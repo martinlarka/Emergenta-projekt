@@ -1,28 +1,114 @@
+turtles-own [own_history opponent_history winnings num_wins]
+
 to setup
-  
+  ;; Create turtles and give them strategies
+  clear-all
+  crt 6
+    [ set size 0.1  ;; easier to see
+      setxy random-xcor random-ycor ]
+  reset-ticks
 end
 
 to go
+  ask turtles [foreach (n-values 6 [?]) [challange who ?]]
+  tick
+end
+
+to challange [turtleX turtleY]
+  ;; get timestep from turtleX
+  ;; get timestep from turtleY
+  
+  ;; Calculate winner
+  
+  ;; Uppdate history on turtles
+  
+  ;; Uppdate winnings
+  
+  ;; Uppdate num-wins
   
 end
+
+to-report calc-move [opponent]
+  if who = 0 [report tits-for-twat opponent]
+  if who = 1 [report tits-for-twat2 opponent]
+  if who = 2 [report random-dude opponent]
+  if who = 3 [report its-something-guy opponent]
+  if who = 4 [report scumbag-steve opponent]
+  if who = 5 [report scumbag-stacy opponent]
+  if who = 6 [report good-guy-greg opponent]
+  if who = 7 [report neil-degrasse-tyson opponent]
+  if who = 8 [report robocop opponent]
+  if who = 9 [report close-enought-guy opponent]
+  if who = 10 [report even-numbers-guy opponent]
+  if who = 11 [report loler-guy opponent]
+  if who = 12 [report median-guy opponent]
+  if who = 13 [report grudger opponent]
+  if who = 14 [report adjust-guy opponent]
+  
+end
+
 
 ;;; Strategies
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
+to-report tits-for-twat [opponent]
+end
+
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
+to-report tits-for-twat2 [opponent]
+end
+
 ;; Random dude!    (rnd(1,10))
+to-report random-dude [opponent]
+end
+
 ;; It’s something guy   (1-1-1-...-1)
+to-report its-something-guy [opponent]
+end
+
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
+to-report scumbag-steve [opponent]
+end
+
 ;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
+to-report scumbag-stacy [opponent]
+end
+
 ;; Good guy Greg   (10-10-10-...-10)
+to-report good-guy-greg [opponent]
+end
+
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
-;; Robocop    (5-5-5-...-5)
-;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av               motståndarens 3 senaste actions i släpphistorik)
+to-report neil-degrasse-tyson [opponent]
+end
+
+;; Robocop  (5-5-5-...-5)
+to-report robocop [opponent]
+end
+
+;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)
+to-report close-enought-guy [opponent]
+end
+
 ;; Even numbers guy  (rnd(1,5)*2)
+to-report even-numbers-guy [opponent]
+end
+
 ;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
+to-report loler-guy [opponent]
+end
+
 ;; Median guy    (börjar på random, tar sedan värdet under motståndarens median)
+to-report median-guy [opponent]
+end
+
 ;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy).
+to-report grudger [opponent]
+end
+
 ;; Adjust-guy    (Ökar 1 vid vinst, Minskar 1 vid förlust)
+to-report adjust-guy [opponent]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
