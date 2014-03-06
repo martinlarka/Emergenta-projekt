@@ -44,9 +44,15 @@ to-report calc-move [opponent]
   if who = 12 [report median-guy opponent]
   if who = 13 [report grudger opponent]
   if who = 14 [report adjust-guy opponent]
-  
 end
 
+to-report get-opponent-history [opponent]
+   report item opponent opponent_history
+end
+
+to-report get-own-history [opponent]
+  report item opponent own_history
+end
 
 ;;; Strategies
 
