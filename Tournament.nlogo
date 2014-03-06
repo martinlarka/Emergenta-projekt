@@ -14,18 +14,35 @@ to go
   tick
 end
 
-to challange [turtleX turtleY]
+to challange [turtle_x turtle_y]
   ;; get timestep from turtleX
+  let x_move calc-move turtle_y
+  
   ;; get timestep from turtleY
+  let y_move -1
+  ask turtle turtle_y [set y_move calc-move turtle_x]
   
   ;; Calculate winner
+  ifelse x_move = y_move 
+  ;; Draw
+  []
+  ;; Theres a winner
+  [ifelse x_move < y_move 
+  ;; Turtle_x wins
+    [;; Uppdate history on turtles
   
-  ;; Uppdate history on turtles
+     ;; Uppdate winnings
   
-  ;; Uppdate winnings
+     ;; Uppdate num-wins
+    ]
+  ;; Turtle_y wins
+    [;; Uppdate history on turtles
   
-  ;; Uppdate num-wins
+     ;; Uppdate winnings
   
+     ;; Uppdate num-wins
+    ]
+    ]
 end
 
 to-report calc-move [opponent]
@@ -54,7 +71,7 @@ to-report get-own-history [opponent]
   report item opponent own_history
 end
 
-;;; Strategies
+;;; Strategies - reports move from 1-10
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [opponent]
