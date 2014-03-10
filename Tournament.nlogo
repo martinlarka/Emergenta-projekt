@@ -112,9 +112,13 @@ to-report tits-for-twat [own_hist op_hist]
   ifelse empty? op_hist[
     report 10
   ][
-    ;; Hämta motståndarens senaste move
+    ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
+    ;; Hämta motståndarens senaste drag
     let pos position -1 results
+    if pos = false[
+      report 10
+    ]
     if item pos op_hist = 10[
       report 10
     ]
@@ -133,10 +137,11 @@ to-report tits-for-twat2 [own_hist op_hist]
   ifelse empty? op_hist[
     report 10
   ][
-    ;; Hämta motståndarens senaste move
+    ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
+    ;; Hämta motståndarens senaste drag
     let pos position -1 results
-    if item pos op_hist  = 10[
+    if item pos op_hist = 10[
       report 10
     ]
     if item pos op_hist <= 2[
@@ -268,8 +273,15 @@ to-report median-guy [own_hist op_hist]
   ifelse empty? op_hist[
     report (random 9) + 1
   ][
-    ;; Hämta sin egen senaste move
-    report round (median op_hist) - 1
+    ;; Hämta motståndarens värden till en lista
+    let results result-list own_hist op_hist length own_hist
+    let opp-results []
+    foreach results[
+      if item ? results = -1[
+        set opp-results lput item ? op_hist opp-results
+      ]
+    ]
+    report median opp-results - 1
   ]
 end
 
@@ -287,14 +299,15 @@ to-report adjust-guy [own_hist op_hist]
   ifelse empty? op_hist[
     report 5
   ][
-    if first own_hist > first op_hist[
+    ;; Hämta vem som vann i senaste matchen
+    let results result-list own_hist op_hist length 1
+    if item ? results = -1[
+      report first own_hist - 1
+    ]
+    if item ? results = 1[
       report first own_hist + 1
     ]
-    ifelse first own_hist < first op_hist[
-      report first own_hist - 1
-    ][
-      report first own_hist
-    ]
+    report first own_hist
   ]
 end
 @#$#@#$#@
