@@ -1,4 +1,4 @@
-turtles-own [own_history opponent_history winnings num_wins]
+turtles-own [own_history opponent_history points num_wins]
 
 to setup
   ;; Create turtles and give them strategies
@@ -29,20 +29,24 @@ to challange [turtle_x turtle_y]
   ;; Theres a winner
   [ifelse x_move < y_move 
   ;; Turtle_x wins
-    [;; Uppdate history on turtles
-  
-     ;; Uppdate winnings
-  
+    [
+     ;; Increase points
+     set points (points + x_move)
      ;; Uppdate num-wins
+     set num_wins (num_wins + 1)
     ]
   ;; Turtle_y wins
-    [;; Uppdate history on turtles
-  
-     ;; Uppdate winnings
-  
-     ;; Uppdate num-wins
+    [       
+     ask turtle turtle_y[
+       ;; Increase points
+       set points (points + y_move)
+       ;; Uppdate num-wins
+       set num_wins (num_wins + 1)
+     ]
     ]
-    ]
+   ]
+  ;; Uppdate history on turtles
+  
 end
 
 to-report calc-move [opponent]
