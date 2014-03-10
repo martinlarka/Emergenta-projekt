@@ -30,14 +30,17 @@ to challange [turtle_x turtle_y]
   [ifelse x_move < y_move 
   ;; Turtle_x wins
     [;; Uppdate history on turtles
-  
+     ;; Turtle_x
+     set own_history replace-item turtle_y own_history (fput x_move item turtle_y own_history)
+     set opponent_history replace-item turtle_y opponent_history (fput -1 item turtle_y opponent_history)
      ;; Uppdate winnings
   
      ;; Uppdate num-wins
     ]
   ;; Turtle_y wins
     [;; Uppdate history on turtles
-  
+     set own_history replace-item turtle_y own_history (fput -1 item turtle_y own_history)
+     set opponent_history replace-item turtle_y opponent_history (fput y_move item turtle_y opponent_history)
      ;; Uppdate winnings
   
      ;; Uppdate num-wins
@@ -63,11 +66,11 @@ to-report calc-move [opponent]
   if who = 14 [report adjust-guy opponent]
 end
 
-to-report get-opponent-history [opponent]
+to-report get-opponent-history [opponent] ;; Reports list of opponents previous steps againt me
    report item opponent opponent_history
 end
 
-to-report get-own-history [opponent]
+to-report get-own-history [opponent] ;; Reports list of previous step history against opponent
   report item opponent own_history
 end
 
