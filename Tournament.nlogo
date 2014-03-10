@@ -28,9 +28,11 @@ to challenge [turtle_x turtle_y]
   ifelse x_move = 10 and  y_move = 10
   ;; Draw
   [;; If x-move and y-move == 10
+    set points points + 5
+    set num_wins num_wins + 1
   ]
   ;; There is a winner
-  [ifelse x_move < y_move 
+  [if x_move < y_move 
   ;; Turtle_x wins
     [
      ;; Increase points
@@ -38,15 +40,8 @@ to challenge [turtle_x turtle_y]
      ;; Uppdate num-wins
      set num_wins (num_wins + 1)
     ]
-  ;; Turtle_y wins
-    [       
-     ask turtle turtle_y[
-       ;; Increase points
-       set points (points + y_move)
-       ;; Uppdate num-wins
-       set num_wins (num_wins + 1)
-     ]
-    ]
+  ;; Turtle_y wins do nothing
+  
    ]
   ;; Uppdate history on turtles
   set own_history replace-item turtle_y own_history (fput x_move item turtle_y own_history)
@@ -202,7 +197,7 @@ to-report loler-guy [own_hist op_hist]
     report random 10
   ][
     ;; Hämta sin egen senaste move
-    report round modes op_hist
+    report first op_hist ;; Kolla så att det här blev rätt Johan!
   ]
 end
 
