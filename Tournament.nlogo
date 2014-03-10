@@ -80,7 +80,7 @@ to-report result-list [own_hist op_hist len]
   let own_hist_sub sublist own_hist 0 len
   let op_hist_sub sublist op_hist 0 len
   
-  foreach n-of len own_hist_sub [
+  foreach own_hist_sub [
     if (item ? own_hist_sub) > (item ? op_hist_sub) [
       ;;seger
       set result_list lput 1 result_list
