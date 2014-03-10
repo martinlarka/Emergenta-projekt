@@ -112,11 +112,15 @@ to-report tits-for-twat [own_hist op_hist]
     report 10
   ][
     ;; Hämta motståndarens senaste move
-    ifelse first op_hist = 1[
-      report 1
-    ][
-      report (first op_hist) - 1
+    let results result-list own_hist op_hist length own_hist
+    let pos position -1 results
+    if item pos op_hist = 10[
+      report 10
     ]
+    if item pos op_hist <= 2[
+      report 1
+    ]
+    report item pos op_hist - 1
   ]
   
 end
@@ -129,11 +133,15 @@ to-report tits-for-twat2 [own_hist op_hist]
     report 10
   ][
     ;; Hämta motståndarens senaste move
-    ifelse first op_hist <= 2[
-      report 1
-    ][
-      report (first op_hist) - 2
+    let results result-list own_hist op_hist length own_hist
+    let pos position -1 results
+    if item pos op_hist  = 10[
+      report 10
     ]
+    if item pos op_hist <= 2[
+      report 1
+    ]
+    report item pos op_hist - 2
   ]
 end
 
@@ -192,7 +200,15 @@ to-report neil-degrasse-tyson [own_hist op_hist]
     report 5
   ][
     ;; Hämta sin egen senaste move
-    report round mean op_hist
+    let results result-list own_hist op_hist length own_hist
+    let opponent-total 0
+    foreach results[
+      if item ? results = -1[
+        set opponent-total opponent-total + item ? op_hist
+      ]
+    ]
+    report round opponent-total / length filter [? = -1 ] results
+    ;;report round mean op_hist
   ]
 end
 
@@ -207,8 +223,18 @@ to-report close-enought-guy [own_hist op_hist]
   ifelse empty? op_hist[
     report 5
   ][
-    ;; Hämta sin egen senaste move
-    report round mean op_hist
+    ;; Hämta motståndarens tre senaste moves
+    let results result-list own_hist op_hist length own_hist
+    let three-results []
+    foreach results[
+      if item ? results = -1[
+        set three-results lput item ? op_hist three-results
+        if length three-results = 3[
+          report round mean three-results
+        ]
+      ]
+    ]
+    report 5
   ]
 end
 
@@ -221,10 +247,17 @@ end
 to-report loler-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
-    report random 10
+    report (random 9) + 1
   ][
     ;; Hämta sin egen senaste move
-    report first sort modes op_hist
+    let results result-list own_hist op_hist length own_hist
+    let opp-results []
+    foreach results[
+      if item ? results = -1[
+        set opp-results lput item ? op_hist opp-results
+      ]
+    ]
+    report first sort modes opp-results
   ]
 end
 
@@ -232,7 +265,7 @@ end
 to-report median-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
-    report random 10
+    report (random 9) + 1
   ][
     ;; Hämta sin egen senaste move
     report round (median op_hist) - 1
@@ -326,15 +359,15 @@ NIL
 1
 
 SLIDER
-13
-157
-185
-190
+31
+184
+203
+217
 num_strategies
 num_strategies
-1
-15
-9
+0
+16
+3
 1
 1
 NIL
