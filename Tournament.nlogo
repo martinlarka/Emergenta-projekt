@@ -92,16 +92,16 @@ end
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [opponent]
   
-  let history get-opponent-history opponent
+  let opp-history get-opponent-history opponent
   ;; Kolla längden på listan
-  ifelse length history = 0[
+  ifelse empty? opp-history[
     report 10
   ][
     ;; Hämta motståndarens senaste move
-    ifelse first history = 1[
+    ifelse first opp-history = 1[
       report 1
     ][
-      report (first history) - 1
+      report (first opp-history) - 1
     ]
   ]
   
@@ -109,17 +109,17 @@ end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
 to-report tits-for-twat2 [opponent]
-  let history get-opponent-history opponent
+  let opp-history get-opponent-history opponent
   
   ;; Kolla längden på listan
-  ifelse length history = 0[
+  ifelse empty? opp-history[
     report 10
   ][
     ;; Hämta motståndarens senaste move
-    ifelse first history <= 2[
+    ifelse first opp-history <= 2[
       report 1
     ][
-      report (first history) - 2
+      report (first opp-history) - 2
     ]
   ]
 end
@@ -136,34 +136,34 @@ end
 
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
 to-report scumbag-steve [opponent]
-  let history get-own-history opponent
+  let my-history get-own-history opponent
   
   ;; Kolla längden på listan
-  ifelse length history = 0[
+  ifelse empty? my-history[
     report 5
   ][
     ;; Hämta sin egen senaste move
-    ifelse first history = 1[
+    ifelse first my-history = 1[
       report 5
     ][
-      report (first history) - 1
+      report (first my-history) - 1
     ]
   ]
 end
 
 ;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
 to-report scumbag-stacy [opponent]
-  let history get-own-history opponent
+  let my-history get-own-history opponent
   
   ;; Kolla längden på listan
-  ifelse length history = 0[
+  ifelse empty? my-history[
     report 5
   ][
     ;; Hämta sin egen senaste move
-    ifelse first history = 1[
+    ifelse first my-history = 1[
       report 5
     ][
-      report (first history) - 2
+      report (first my-history) - 2
     ]
   ]
 end
@@ -175,18 +175,14 @@ end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
 to-report neil-degrasse-tyson [opponent]
-  let history get-opponent-history opponent
+  let opp-history get-opponent-history opponent
   
   ;; Kolla längden på listan
-  ifelse length history = 0[
+  ifelse empty? opp-history[
     report 5
   ][
-    ;; Hämta sin egen senaste move
-    ifelse first history = 1[
-      report 5
-    ][
-      report (first history) - 1
-    ]
+    ;; Räkna ut medelvärdet av motståndarens val
+    report mean opp-history
   ]
 end
 
@@ -197,6 +193,19 @@ end
 
 ;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)
 to-report close-enought-guy [opponent]
+  let opp-history get-opponent-history opponent
+  
+  ;; Kolla längden på listan
+  ifelse empty? opp-history[
+    report 5
+  ][
+    ;; Hämta sin egen senaste move
+    ifelse length opp-history <= 2 [
+      report 5
+    ][
+      report (first opp-history) - 2
+    ]
+  ]
 end
 
 ;; Even numbers guy  (rnd(1,5)*2)
@@ -206,6 +215,7 @@ end
 
 ;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
 to-report loler-guy [opponent]
+  ;;modes opp-history
 end
 
 ;; Median guy    (börjar på random, tar sedan värdet under motståndarens median)
