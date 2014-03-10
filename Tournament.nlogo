@@ -79,6 +79,29 @@ to-report get-own-history [opponent]
   report item opponent own_history
 end
 
+to-report result-list [own_hist op_hist len]
+  let result_list []
+  let own_hist_sub sublist own_hist 0 len
+  let op_hist_sub sublist op_hist 0 len
+  
+  foreach own_hist_sub [
+    if (item ? own_hist_sub) > (item ? op_hist_sub) [
+      ;;seger
+      set result_list lput 1 result_list
+    ]
+    if item ? own_hist_sub < item ? op_hist_sub [
+      ;;förlust
+      set result_list lput -1 result_list
+    ]
+    if item ? own_hist_sub = item ? op_hist_sub [
+      ;;lika
+      set result_list lput 0 result_list
+    ]
+  ]
+  report result_list
+end
+
+
 ;;; Strategies - reports move from 1-10
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
