@@ -51,22 +51,22 @@ to challange [turtle_x turtle_y]
   
 end
 
-to-report calc-move [opponent own_hist op_hist]
-  if who = 0 [report tits-for-twat opponent]
-  if who = 1 [report tits-for-twat2 opponent]
-  if who = 2 [report random-dude opponent]
-  if who = 3 [report its-something-guy opponent]
-  if who = 4 [report scumbag-steve opponent]
-  if who = 5 [report scumbag-stacy opponent]
-  if who = 6 [report good-guy-greg opponent]
-  if who = 7 [report neil-degrasse-tyson opponent]
-  if who = 8 [report robocop opponent]
-  if who = 9 [report close-enought-guy opponent]
-  if who = 10 [report even-numbers-guy opponent]
-  if who = 11 [report loler-guy opponent]
-  if who = 12 [report median-guy opponent]
-  if who = 13 [report grudger opponent]
-  if who = 14 [report adjust-guy opponent]
+to-report calc-move [strategy own_hist op_hist]
+  if strategy = 0 [report tits-for-twat own_hist op_hist]
+  if strategy = 1 [report tits-for-twat2 own_hist op_hist]
+  if strategy = 2 [report random-dude own_hist op_hist]
+  if strategy = 3 [report its-something-guy own_hist op_hist]
+  if strategy = 4 [report scumbag-steve own_hist op_hist]
+  if strategy = 5 [report scumbag-stacy own_hist op_hist]
+  if strategy = 6 [report good-guy-greg own_hist op_hist]
+  if strategy = 7 [report neil-degrasse-tyson own_hist op_hist]
+  if strategy = 8 [report robocop own_hist op_hist]
+  if strategy = 9 [report close-enought-guy own_hist op_hist]
+  if strategy = 10 [report even-numbers-guy own_hist op_hist]
+  if strategy = 11 [report loler-guy own_hist op_hist]
+  if strategy = 12 [report median-guy own_hist op_hist]
+  if strategy = 13 [report grudger own_hist op_hist]
+  if strategy = 14 [report adjust-guy own_hist op_hist]
 end
 
 to-report get-opponent-history [opponent]
@@ -80,7 +80,7 @@ end
 ;;; Strategies - reports move from 1-10
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
-to-report tits-for-twat [opponent]
+to-report tits-for-twat [own_hist op_hist]
   
   let history get-opponent-history opponent
   ;; Kolla längden på listan
@@ -98,7 +98,7 @@ to-report tits-for-twat [opponent]
 end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
-to-report tits-for-twat2 [opponent]
+to-report tits-for-twat2 [own_hist op_hist]
   let history get-opponent-history opponent
   
   ;; Kolla längden på listan
@@ -115,15 +115,15 @@ to-report tits-for-twat2 [opponent]
 end
 
 ;; Random dude!    (rnd(1,10))
-to-report random-dude [opponent]
+to-report random-dude [own_hist op_hist]
 end
 
 ;; It’s something guy   (1-1-1-...-1)
-to-report its-something-guy [opponent]
+to-report its-something-guy [own_hist op_hist]
 end
 
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
-to-report scumbag-steve [opponent]
+to-report scumbag-steve [own_hist op_hist]
 
   let history get-own-history opponent
   
@@ -141,7 +141,7 @@ to-report scumbag-steve [opponent]
 end
 
 ;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
-to-report scumbag-stacy [opponent]
+to-report scumbag-stacy [own_hist op_hist]
   let history get-own-history opponent
   
   ;; Kolla längden på listan
@@ -158,11 +158,11 @@ to-report scumbag-stacy [opponent]
 end
 
 ;; Good guy Greg   (10-10-10-...-10)
-to-report good-guy-greg [opponent]
+to-report good-guy-greg [own_hist op_hist]
 end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
-to-report neil-degrasse-tyson [opponent]
+to-report neil-degrasse-tyson [own_hist op_hist]
   let history get-opponent-history opponent
   
   ;; Kolla längden på listan
@@ -179,31 +179,31 @@ to-report neil-degrasse-tyson [opponent]
 end
 
 ;; Robocop  (5-5-5-...-5)
-to-report robocop [opponent]
+to-report robocop [own_hist op_hist]
 end
 
 ;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)
-to-report close-enought-guy [opponent]
+to-report close-enought-guy [own_hist op_hist]
 end
 
 ;; Even numbers guy  (rnd(1,5)*2)
-to-report even-numbers-guy [opponent]
+to-report even-numbers-guy [own_hist op_hist]
 end
 
 ;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
-to-report loler-guy [opponent]
+to-report loler-guy [own_hist op_hist]
 end
 
 ;; Median guy    (börjar på random, tar sedan värdet under motståndarens median)
-to-report median-guy [opponent]
+to-report median-guy [own_hist op_hist]
 end
 
 ;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy).
-to-report grudger [opponent]
+to-report grudger [own_hist op_hist]
 end
 
 ;; Adjust-guy    (Ökar 1 vid vinst, Minskar 1 vid förlust)
-to-report adjust-guy [opponent]
+to-report adjust-guy [own_hist op_hist]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
