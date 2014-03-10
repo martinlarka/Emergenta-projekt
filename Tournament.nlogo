@@ -77,16 +77,19 @@ end
 
 to-report result-list [own_hist op_hist len]
   let result_list []
-  foreach n-of len own_hist [ 
-    if (item ? own_hist) > (item ? op_hist) [
+  let own_hist_sub sublist own_hist 0 len
+  let op_hist_sub sublist op_hist 0 len
+  
+  foreach n-of len own_hist_sub [
+    if (item ? own_hist_sub) > (item ? op_hist_sub) [
       ;;seger
       set result_list lput 1 result_list
     ]
-    if item ? own_hist < item ? op_hist [
+    if item ? own_hist_sub < item ? op_hist_sub [
       ;;förlust
       set result_list lput -1 result_list
     ]
-    if item ? own_hist = item ? op_hist [
+    if item ? own_hist_sub = item ? op_hist_sub [
       ;;lika
       set result_list lput 0 result_list
     ]
