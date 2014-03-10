@@ -25,10 +25,11 @@ to challenge [turtle_x turtle_y]
   ;;ask turtle turtle_y [set y_move calc-move turtle_x]
   
   ;; Calculate winner
-  ifelse x_move = y_move 
+  ifelse x_move = 10 and  y_move = 10
   ;; Draw
-  []
-  ;; Theres a winner
+  [;; If x-move and y-move == 10
+  ]
+  ;; There is a winner
   [ifelse x_move < y_move 
   ;; Turtle_x wins
     [
@@ -48,6 +49,8 @@ to challenge [turtle_x turtle_y]
     ]
    ]
   ;; Uppdate history on turtles
+  set own_history replace-item turtle_y own_history (fput x_move item turtle_y own_history)
+  set opponent_history replace-item turtle_y opponent_history (fput y_move item turtle_y opponent_history)
   
 end
 
