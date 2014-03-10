@@ -106,9 +106,7 @@ end
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [own_hist op_hist]
-  show "HIsto own - op"
-  show own_hist
-  show op_hist
+
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
     report 10
@@ -120,6 +118,7 @@ to-report tits-for-twat [own_hist op_hist]
       report (first op_hist) - 1
     ]
   ]
+  
 end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
@@ -140,9 +139,6 @@ end
 
 ;; Random dude!    (rnd(1,10))
 to-report random-dude [own_hist op_hist]
-  show "Random HIsto own - op"
-  show own_hist
-  show op_hist
   report (random 9) + 1
 end
 
@@ -218,7 +214,7 @@ end
 
 ;; Even numbers guy  (rnd(1,5)*2)
 to-report even-numbers-guy [own_hist op_hist]
-  report (random 5) * 2
+  report ((random 4) + 1) * 2
 end
 
 ;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
@@ -228,20 +224,44 @@ to-report loler-guy [own_hist op_hist]
     report random 10
   ][
     ;; Hämta sin egen senaste move
-    report first op_hist ;; Kolla så att det här blev rätt Johan!
+    report first sort modes op_hist
   ]
 end
 
 ;; Median guy    (börjar på random, tar sedan värdet under motståndarens median)
 to-report median-guy [own_hist op_hist]
+  ;; Kolla om listan är tom
+  ifelse empty? op_hist[
+    report random 10
+  ][
+    ;; Hämta sin egen senaste move
+    report round (median op_hist) - 1
+  ]
 end
 
 ;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy).
 to-report grudger [own_hist op_hist]
+  ifelse empty? op_hist or first op_hist = 10[
+    report 10
+  ][
+    report 1
+  ]
 end
 
 ;; Adjust-guy    (Ökar 1 vid vinst, Minskar 1 vid förlust)
 to-report adjust-guy [own_hist op_hist]
+  ifelse empty? op_hist[
+    report 5
+  ][
+    if first own_hist > first op_hist[
+      report first own_hist + 1
+    ]
+    ifelse first own_hist < first op_hist[
+      report first own_hist - 1
+    ][
+      report first own_hist
+    ]
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
