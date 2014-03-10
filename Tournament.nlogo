@@ -1,11 +1,16 @@
 turtles-own [own_history opponent_history points num_wins]
 
 to setup
+  let num_strategies 3
   ;; Create turtles and give them strategies
   clear-all
-  crt 6
+  crt num_strategies
     [ set size 0.1  ;; easier to see
-      setxy random-xcor random-ycor ]
+      setxy random-xcor random-ycor 
+      set own_history []
+      repeat num_strategies [set own_history lput [] own_history]
+      set opponent_history []
+      repeat num_strategies [set opponent_history lput [] opponent_history]]
   reset-ticks
 end
 
@@ -16,9 +21,9 @@ end
 
 to challenge [turtle_x turtle_y]
   ;; get timestep from turtleX
-  let x_move calc-move turtle_x own_history opponent_history 
+  let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
-  let y_move calc-move turtle_y opponent_history own_history
+  let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
   
   ;; get timestep from turtleY
   ;;let y_move -1
@@ -101,7 +106,6 @@ end
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [own_hist op_hist]
-
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
     report 10
@@ -113,7 +117,6 @@ to-report tits-for-twat [own_hist op_hist]
       report (first op_hist) - 1
     ]
   ]
-  
 end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
