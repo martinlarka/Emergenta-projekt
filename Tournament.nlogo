@@ -306,15 +306,15 @@ NIL
 1
 
 SLIDER
-31
-184
-203
-217
+13
+157
+185
+190
 num_strategies
 num_strategies
-0
-16
-3
+1
+15
+9
 1
 1
 NIL
