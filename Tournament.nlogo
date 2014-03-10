@@ -51,7 +51,7 @@ to challange [turtle_x turtle_y]
   
 end
 
-to-report calc-move [opponent]
+to-report calc-move [opponent own_hist op_hist]
   if who = 0 [report tits-for-twat opponent]
   if who = 1 [report tits-for-twat2 opponent]
   if who = 2 [report random-dude opponent]
@@ -81,8 +81,6 @@ end
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [opponent]
-<<<<<<< HEAD
-=======
   
   let history get-opponent-history opponent
   ;; Kolla längden på listan
@@ -97,13 +95,10 @@ to-report tits-for-twat [opponent]
     ]
   ]
   
->>>>>>> parent of fa50318... Lite mer implementationer
 end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
 to-report tits-for-twat2 [opponent]
-<<<<<<< HEAD
-=======
   let history get-opponent-history opponent
   
   ;; Kolla längden på listan
@@ -117,7 +112,6 @@ to-report tits-for-twat2 [opponent]
       report (first history) - 2
     ]
   ]
->>>>>>> parent of fa50318... Lite mer implementationer
 end
 
 ;; Random dude!    (rnd(1,10))
@@ -130,8 +124,7 @@ end
 
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
 to-report scumbag-steve [opponent]
-<<<<<<< HEAD
-=======
+
   let history get-own-history opponent
   
   ;; Kolla längden på listan
@@ -145,13 +138,10 @@ to-report scumbag-steve [opponent]
       report (first history) - 1
     ]
   ]
->>>>>>> parent of fa50318... Lite mer implementationer
 end
 
 ;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
 to-report scumbag-stacy [opponent]
-<<<<<<< HEAD
-=======
   let history get-own-history opponent
   
   ;; Kolla längden på listan
@@ -165,7 +155,6 @@ to-report scumbag-stacy [opponent]
       report (first history) - 2
     ]
   ]
->>>>>>> parent of fa50318... Lite mer implementationer
 end
 
 ;; Good guy Greg   (10-10-10-...-10)
@@ -174,8 +163,6 @@ end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
 to-report neil-degrasse-tyson [opponent]
-<<<<<<< HEAD
-=======
   let history get-opponent-history opponent
   
   ;; Kolla längden på listan
@@ -189,7 +176,6 @@ to-report neil-degrasse-tyson [opponent]
       report (first history) - 1
     ]
   ]
->>>>>>> parent of fa50318... Lite mer implementationer
 end
 
 ;; Robocop  (5-5-5-...-5)
