@@ -257,7 +257,9 @@ to-report adjust-guy [own_hist op_hist]
       report first own_hist + 1
     ]
     ifelse first own_hist < first op_hist[
-      report first own_hist - 1
+      ifelse first own_hist < 2
+      [report 1]
+      [report first own_hist - 1]
     ][
       report first own_hist
     ]
@@ -265,13 +267,13 @@ to-report adjust-guy [own_hist op_hist]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-649
-470
+1028
+114
+1273
+318
 16
 16
-13.0
+5.242424242424242
 1
 10
 1
@@ -292,10 +294,10 @@ ticks
 30.0
 
 BUTTON
-41
-41
-107
-74
+208
+25
+274
+58
 setup
 setup
 NIL
@@ -309,10 +311,10 @@ NIL
 1
 
 BUTTON
-60
-101
-123
-134
+289
+25
+352
+58
 go
 go
 T
@@ -326,19 +328,151 @@ NIL
 1
 
 SLIDER
-13
-157
-185
-190
+15
+23
+187
+56
 num_strategies
 num_strategies
 1
 15
-9
+15
 1
 1
 NIL
 HORIZONTAL
+
+PLOT
+14
+69
+328
+350
+Points
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"tit-for-tat" 1.0 0 -8053223 true "" "ask turtle 0[plot points]"
+"tit-for-2-tat" 1.0 0 -1184463 true "" "ask turtle 1[plot points]"
+"random-dude" 1.0 0 -13345367 true "" "ask turtle 2[plot points]"
+"its-something-guy" 1.0 0 -13840069 true "" "ask turtle 3[plot points]"
+"scumbag-steve" 1.0 0 -8630108 true "" "ask turtle 4[plot points]"
+
+PLOT
+344
+70
+658
+351
+Points-2
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"scumbag-stacy" 1.0 0 -8053223 true "" "ask turtle 5[plot points]"
+"good-guy-greg" 1.0 0 -1184463 true "" "ask turtle 6[plot points]"
+"neil-degrasse-tyson" 1.0 0 -13345367 true "" "ask turtle 7[plot points]"
+"robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot points]"
+"close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot points]"
+
+PLOT
+676
+70
+990
+351
+Points-3
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"even-numbers-guy" 1.0 0 -8053223 true "" "ask turtle 10[plot points]"
+"loler-guy" 1.0 0 -1184463 true "" "ask turtle 11[plot points]"
+"median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot points]"
+"grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot points]"
+"adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot points]"
+
+PLOT
+15
+360
+329
+641
+num_wins
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"tit-for-tat" 1.0 0 -8053223 true "" "ask turtle 0[plot num_wins]"
+"tit-for-2-tat" 1.0 0 -1184463 true "" "ask turtle 1[plot num_wins]"
+"random-dude" 1.0 0 -13345367 true "" "ask turtle 2[plot num_wins]"
+"its-something-guy" 1.0 0 -13840069 true "" "ask turtle 3[plot num_wins]"
+"scumbag-steve" 1.0 0 -8630108 true "" "ask turtle 4[plot num_wins]"
+
+PLOT
+345
+361
+659
+642
+num_wins-2
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"scumbag-stacy" 1.0 0 -8053223 true "" "ask turtle 5[plot num_wins]"
+"good-guy-greg" 1.0 0 -1184463 true "" "ask turtle 6[plot num_wins]"
+"neil-degrasse-tyson" 1.0 0 -13345367 true "" "ask turtle 7[plot num_wins]"
+"robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot num_wins]"
+"close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot num_wins]"
+
+PLOT
+677
+361
+991
+642
+num_wins-3
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"even-numbers-guy" 1.0 0 -8053223 true "" "ask turtle 10[plot num_wins]"
+"loler-guy" 1.0 0 -1184463 true "" "ask turtle 11[plot num_wins]"
+"median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot num_wins]"
+"grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot num_wins]"
+"adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot num_wins]"
 
 @#$#@#$#@
 ## WHAT IS IT?
