@@ -75,6 +75,25 @@ to-report get-own-history [opponent]
   report item opponent own_history
 end
 
+to-report result-list [own_hist op_hist len]
+  let result_list []
+  foreach n-of len own_hist [ 
+    if (item ? own_hist) > (item ? op_hist) [
+      ;;seger
+      set result_list lput 1 result_list
+    ]
+    if item ? own_hist < item ? op_hist [
+      ;;förlust
+      set result_list lput -1 result_list
+    ]
+    if item ? own_hist = item ? op_hist [
+      ;;lika
+      set result_list lput 0 result_list
+    ]
+  ]
+  report result_list
+end
+
 ;;; Strategies - reports move from 1-10
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
@@ -197,7 +216,7 @@ to-report loler-guy [own_hist op_hist]
     report random 10
   ][
     ;; Hämta sin egen senaste move
-    report first op_hist ;; Kolla så att det här blev rätt Johan!
+    report modes op_hist ;; Kolla så att det här blev rätt Johan!
   ]
 end
 
