@@ -79,38 +79,108 @@ end
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [opponent]
+  
+  let history get-opponent-history opponent
+  ;; Kolla längden på listan
+  ifelse lenght history = 0[
+    report 10
+  ][
+    ;; Hämta motståndarens senaste move
+    ifelse first history = 1[
+      report 1
+    ][
+      report (first history) - 1
+    ]
+  ]
+  
 end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
 to-report tits-for-twat2 [opponent]
+  let history get-opponent-history opponent
+  
+  ;; Kolla längden på listan
+  ifelse lenght history = 0[
+    report 10
+  ][
+    ;; Hämta motståndarens senaste move
+    ifelse first history <= 2[
+      report 1
+    ][
+      report (first history) - 2
+    ]
+  ]
 end
 
 ;; Random dude!    (rnd(1,10))
 to-report random-dude [opponent]
+  report random(10)
 end
 
 ;; It’s something guy   (1-1-1-...-1)
 to-report its-something-guy [opponent]
+  report 1
 end
 
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
 to-report scumbag-steve [opponent]
+  let history get-own-history opponent
+  
+  ;; Kolla längden på listan
+  ifelse lenght history = 0[
+    report 5
+  ][
+    ;; Hämta sin egen senaste move
+    ifelse first history = 1[
+      report 5
+    ][
+      report (first history) - 1
+    ]
+  ]
 end
 
 ;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
 to-report scumbag-stacy [opponent]
+  let history get-own-history opponent
+  
+  ;; Kolla längden på listan
+  ifelse lenght history = 0[
+    report 5
+  ][
+    ;; Hämta sin egen senaste move
+    ifelse first history = 1[
+      report 5
+    ][
+      report (first history) - 2
+    ]
+  ]
 end
 
 ;; Good guy Greg   (10-10-10-...-10)
 to-report good-guy-greg [opponent]
+  report 10
 end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
 to-report neil-degrasse-tyson [opponent]
+  let history get-opponent-history opponent
+  
+  ;; Kolla längden på listan
+  ifelse lenght history = 0[
+    report 5
+  ][
+    ;; Hämta sin egen senaste move
+    ifelse first history = 1[
+      report 5
+    ][
+      report (first history) - 1
+    ]
+  ]
 end
 
 ;; Robocop  (5-5-5-...-5)
 to-report robocop [opponent]
+  report 5
 end
 
 ;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)
@@ -119,6 +189,7 @@ end
 
 ;; Even numbers guy  (rnd(1,5)*2)
 to-report even-numbers-guy [opponent]
+  report random(5) * 2
 end
 
 ;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
