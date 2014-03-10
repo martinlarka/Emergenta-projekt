@@ -267,13 +267,13 @@ to-report adjust-guy [own_hist op_hist]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-1028
-114
-1273
-318
+858
+10
+1395
+568
 16
 16
-5.242424242424242
+15.97
 1
 10
 1
@@ -473,6 +473,56 @@ PENS
 "median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot num_wins]"
 "grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot num_wins]"
 "adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot num_wins]"
+
+TEXTBOX
+1001
+42
+1151
+86
+Plot 1: tit-for-tat \nPlot 2: scumbag-stacy \nPlot 3: even-numbers-guy\n
+11
+13.0
+1
+
+TEXTBOX
+1000
+92
+1150
+136
+Plot 1: tit-for-2-tat \nPlot 2: good-guy-greg \nPlot 3: loler-guy\n
+11
+45.0
+1
+
+TEXTBOX
+999
+193
+1149
+237
+Plot 1: its-something-guy \nPlot 2: robocop \nPlot 3: grudger\n
+11
+65.0
+1
+
+TEXTBOX
+1000
+145
+1173
+189
+Plot 1: random-dude \nPlot 2: neil-degrasse-tyson \nPlot 3: median-guy\n
+11
+105.0
+1
+
+TEXTBOX
+999
+242
+1149
+286
+Plot 1: scumbag-steve \nPlot 2: close-enought-guy \nPlot 3: adjust-guy\n
+11
+115.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
