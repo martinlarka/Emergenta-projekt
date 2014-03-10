@@ -10,11 +10,11 @@ to setup
 end
 
 to go
-  ask turtles [foreach (n-values 6 [?]) [challange who ?]]
+  ask turtles [foreach (n-values 6 [?]) [challenge who ?]]
   tick
 end
 
-to challange [turtle_x turtle_y]
+to challenge [turtle_x turtle_y]
   ;; get timestep from turtleX
   let x_move calc-move turtle_x own_history opponent_history 
   
@@ -81,17 +81,16 @@ end
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [own_hist op_hist]
-  
-  let history get-opponent-history opponent
-  ;; Kolla längden på listan
-  ifelse length history = 0[
+
+  ;; Kolla om listan är tom
+  ifelse empty? op_hist[
     report 10
   ][
     ;; Hämta motståndarens senaste move
-    ifelse first history = 1[
+    ifelse first op_hist = 1[
       report 1
     ][
-      report (first history) - 1
+      report (first op_hist) - 1
     ]
   ]
   
@@ -99,99 +98,109 @@ end
 
 ;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
 to-report tits-for-twat2 [own_hist op_hist]
-  let history get-opponent-history opponent
   
-  ;; Kolla längden på listan
-  ifelse length history = 0[
+  ;; Kolla om listan är tom
+  ifelse empty? op_hist[
     report 10
   ][
     ;; Hämta motståndarens senaste move
-    ifelse first history <= 2[
+    ifelse first op_hist <= 2[
       report 1
     ][
-      report (first history) - 2
+      report (first op_hist) - 2
     ]
   ]
 end
 
 ;; Random dude!    (rnd(1,10))
 to-report random-dude [own_hist op_hist]
+  report random 10
 end
 
 ;; It’s something guy   (1-1-1-...-1)
 to-report its-something-guy [own_hist op_hist]
+  report 1
 end
 
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
 to-report scumbag-steve [own_hist op_hist]
-
-  let history get-own-history opponent
   
-  ;; Kolla längden på listan
-  ifelse length history = 0[
+  ;; Kolla om listan är tom
+  ifelse empty? own_hist[
     report 5
   ][
     ;; Hämta sin egen senaste move
-    ifelse first history = 1[
+    ifelse first own_hist = 1[
       report 5
     ][
-      report (first history) - 1
+      report (first own_hist) - 1
     ]
   ]
 end
 
 ;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
 to-report scumbag-stacy [own_hist op_hist]
-  let history get-own-history opponent
   
-  ;; Kolla längden på listan
-  ifelse length history = 0[
+  ;; Kolla om listan är tom
+  ifelse empty? own_hist[
     report 5
   ][
     ;; Hämta sin egen senaste move
-    ifelse first history = 1[
+    ifelse first own_hist = 1[
       report 5
     ][
-      report (first history) - 2
+      report (first own_hist) - 2
     ]
   ]
 end
 
 ;; Good guy Greg   (10-10-10-...-10)
 to-report good-guy-greg [own_hist op_hist]
+  report 10
 end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
 to-report neil-degrasse-tyson [own_hist op_hist]
-  let history get-opponent-history opponent
   
-  ;; Kolla längden på listan
-  ifelse length history = 0[
+  ;; Kolla om listan är tom
+  ifelse empty? op_hist[
     report 5
   ][
     ;; Hämta sin egen senaste move
-    ifelse first history = 1[
-      report 5
-    ][
-      report (first history) - 1
-    ]
+    report round mean op_hist
   ]
 end
 
 ;; Robocop  (5-5-5-...-5)
 to-report robocop [own_hist op_hist]
+  report 5
 end
 
 ;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)
 to-report close-enought-guy [own_hist op_hist]
+  ;; Kolla om listan är tom
+  ifelse empty? op_hist[
+    report 5
+  ][
+    ;; Hämta sin egen senaste move
+    report round mean op_hist
+  ]
 end
 
 ;; Even numbers guy  (rnd(1,5)*2)
 to-report even-numbers-guy [own_hist op_hist]
+  report (random 5) * 2
 end
 
 ;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
 to-report loler-guy [own_hist op_hist]
+  ;; Kolla om listan är tom
+  ifelse empty? op_hist[
+    report random 10
+  ][
+    ;; Hämta sin egen senaste move
+    report round modes op_hist
+  ]
 end
 
 ;; Median guy    (börjar på random, tar sedan värdet under motståndarens median)
