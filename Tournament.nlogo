@@ -1,7 +1,6 @@
 turtles-own [own_history opponent_history points num_wins]
 
 to setup
-  let num_strategies 3
   ;; Create turtles and give them strategies
   clear-all
   crt num_strategies
@@ -15,7 +14,7 @@ to setup
 end
 
 to go
-  ask turtles [foreach (n-values 6 [?]) [challenge who ?]]
+  ask turtles [foreach (n-values num_strategies [?]) [challenge who ?]]
   tick
 end
 
@@ -80,32 +79,13 @@ to-report get-own-history [opponent]
   report item opponent own_history
 end
 
-to-report result-list [own_hist op_hist len]
-  let result_list []
-  let own_hist_sub sublist own_hist 0 len
-  let op_hist_sub sublist op_hist 0 len
-  
-  foreach own_hist_sub [
-    if (item ? own_hist_sub) > (item ? op_hist_sub) [
-      ;;seger
-      set result_list lput 1 result_list
-    ]
-    if item ? own_hist_sub < item ? op_hist_sub [
-      ;;förlust
-      set result_list lput -1 result_list
-    ]
-    if item ? own_hist_sub = item ? op_hist_sub [
-      ;;lika
-      set result_list lput 0 result_list
-    ]
-  ]
-  report result_list
-end
-
 ;;; Strategies - reports move from 1-10
 
 ;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
 to-report tits-for-twat [own_hist op_hist]
+  show "HIsto own - op"
+  show own_hist
+  show op_hist
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
     report 10
@@ -137,7 +117,10 @@ end
 
 ;; Random dude!    (rnd(1,10))
 to-report random-dude [own_hist op_hist]
-  report random 10
+  show "Random HIsto own - op"
+  show own_hist
+  show op_hist
+  report (random 9) + 1
 end
 
 ;; It’s something guy   (1-1-1-...-1)
@@ -222,7 +205,7 @@ to-report loler-guy [own_hist op_hist]
     report random 10
   ][
     ;; Hämta sin egen senaste move
-    report modes op_hist ;; Kolla så att det här blev rätt Johan!
+    report first op_hist ;; Kolla så att det här blev rätt Johan!
   ]
 end
 
@@ -298,6 +281,21 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+31
+184
+203
+217
+num_strategies
+num_strategies
+0
+16
+3
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
