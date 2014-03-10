@@ -10,11 +10,11 @@ to setup
 end
 
 to go
-  ask turtles [foreach (n-values 6 [?]) [challange who ?]]
+  ask turtles [foreach (n-values 6 [?]) [challenge who ?]]
   tick
 end
 
-to challange [turtle_x turtle_y]
+to challenge [turtle_x turtle_y]
   ;; get timestep from turtleX
   let x_move calc-move turtle_y
   
@@ -82,7 +82,7 @@ to-report tits-for-twat [opponent]
   
   let history get-opponent-history opponent
   ;; Kolla längden på listan
-  ifelse lenght history = 0[
+  ifelse length history = 0[
     report 10
   ][
     ;; Hämta motståndarens senaste move
@@ -100,7 +100,7 @@ to-report tits-for-twat2 [opponent]
   let history get-opponent-history opponent
   
   ;; Kolla längden på listan
-  ifelse lenght history = 0[
+  ifelse length history = 0[
     report 10
   ][
     ;; Hämta motståndarens senaste move
@@ -127,7 +127,7 @@ to-report scumbag-steve [opponent]
   let history get-own-history opponent
   
   ;; Kolla längden på listan
-  ifelse lenght history = 0[
+  ifelse length history = 0[
     report 5
   ][
     ;; Hämta sin egen senaste move
@@ -144,7 +144,7 @@ to-report scumbag-stacy [opponent]
   let history get-own-history opponent
   
   ;; Kolla längden på listan
-  ifelse lenght history = 0[
+  ifelse length history = 0[
     report 5
   ][
     ;; Hämta sin egen senaste move
@@ -166,7 +166,7 @@ to-report neil-degrasse-tyson [opponent]
   let history get-opponent-history opponent
   
   ;; Kolla längden på listan
-  ifelse lenght history = 0[
+  ifelse length history = 0[
     report 5
   ][
     ;; Hämta sin egen senaste move
