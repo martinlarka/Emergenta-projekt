@@ -300,11 +300,11 @@ to-report adjust-guy [own_hist op_hist]
     report 5
   ][
     ;; Hämta vem som vann i senaste matchen
-    let results result-list own_hist op_hist length 1
-    if item ? results = -1[
+    let results result-list own_hist op_hist 1
+    if item 0 results = -1[
       report first own_hist - 1
     ]
-    if item ? results = 1[
+    if item 0 results = 1[
       report first own_hist + 1
     ]
     report first own_hist
