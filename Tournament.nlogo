@@ -23,14 +23,6 @@ to go
 end
 
 to challenge [turtle_x turtle_y]
-  show "Nu möts Turtle:"
-  show turtle_x
-  show "& Turtle:"
-  show turtle_y
-  show "************"
-  
-  ;; get timestep from turtleX
-  
   ;; FÖR TEST
   type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
   ;; // SLUT TEST
@@ -276,8 +268,7 @@ to-report loler-guy [own_hist op_hist]
     
     ;; ENDAST FÖR TEST 
     let result (random 9) + 1
-    show "opp-hist empty, lolerboy returns: "
-    show result
+    type "lolerboy returns: " type result print ", opp-history was empty"
     report result
     ;; //ENDAST FÖR TEST 
     ;;report (random 9) + 1
@@ -295,8 +286,7 @@ to-report loler-guy [own_hist op_hist]
       ;; ENDAST FÖR TEST
       show op_hist
       show own_hist
-      show sort modes opp-results
-      show "modes counted, lolerboy returns: "
+      type "lolerboy returns: " type first sort modes opp-results print ", modes "
       show first sort modes opp-results
       ;; //ENDAST FÖR TEST
       
