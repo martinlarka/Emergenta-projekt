@@ -209,22 +209,27 @@ to-report good-guy-greg [own_hist op_hist]
 end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
+;; Ser ut att funka /93
 to-report neil-degrasse-tyson [own_hist op_hist]
   
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
     report 5
   ][
-    ;; Hämta sin egen senaste move
+    ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
-    let opponent-total 0
+    let opponent-total 0    
+    
+    ;;Gå igenom resultatlistan och lägg till motståndarens tillgängliga värden till en total
     foreach (n-values length results [?])[
-      if item ? results = -1[
+      if item ? results = -1 or item ? results = 0[
         set opponent-total opponent-total + item ? op_hist
       ]
     ]
-    if length filter [? = -1 ] results != 0[
-      report round opponent-total / length filter [? = -1 ] results
+    ;;Om motståndaren har tillgängliga resultat
+    if length filter [? = -1 or ? = 0] results != 0[
+      ;;Rapportera det avrundade medelvärdet av motståndarens resultat
+      report round (opponent-total / length filter [? = -1 or ? = 0] results)
     ]
     report 5
   ]
@@ -265,13 +270,7 @@ end
 to-report loler-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
-    
-    ;; ENDAST FÖR TEST 
-    let result (random 9) + 1
-    type "lolerboy returns: " type result print ", opp-history was empty"
-    report result
-    ;; //ENDAST FÖR TEST 
-    ;;report (random 9) + 1
+    report (random 9) + 1
   ][
     ;; Hämta sin egen senaste move
     let results result-list own_hist op_hist length own_hist
@@ -282,23 +281,9 @@ to-report loler-guy [own_hist op_hist]
       ]
     ]
     if length opp-results != 0[
-      
-      ;; ENDAST FÖR TEST
-      show op_hist
-      show own_hist
-      type "lolerboy returns: " type first sort modes opp-results print ", modes "
-      show first sort modes opp-results
-      ;; //ENDAST FÖR TEST
-      
       report first sort modes opp-results
     ]
-    ;; ENDAST FÖR TEST
-    let theresult (random 9) + 1
-    show "has only won yet, lolerboy returns: "
-    show theresult
-    report theresult
-    ;; //ENDAST FÖR TEST
-    ;;report (random 9) + 1
+    report (random 9) + 1
   ]
 end
 
