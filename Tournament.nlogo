@@ -24,7 +24,7 @@ end
 
 to challenge [turtle_x turtle_y]
   ;; FÖR TEST
-  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
+  ;;type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
   ;; // SLUT TEST
   
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
@@ -122,17 +122,13 @@ to-report tits-for-twat [own_hist op_hist]
     ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
-    let pos position -1 results
-    if pos = false[
-      report 10
+    if first results != -1[
+      report first own_hist
     ]
-    if item pos op_hist = 10[
-      report 10
-    ]
-    if item pos op_hist <= 2[
+    if first op_hist <= 2[
       report 1
     ]
-    report item pos op_hist - 1
+    report first op_hist - 1
   ]
   
 end
@@ -147,17 +143,13 @@ to-report tits-for-twat2 [own_hist op_hist]
     ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
-    let pos position -1 results
-    if pos = false[
-      report 10
+   if first results != -1[
+      report first own_hist
     ]
-    if item pos op_hist = 10[
-      report 10
-    ]
-    if item pos op_hist <= 2[
+    if first op_hist <= 2[
       report 1
     ]
-    report item pos op_hist - 2
+    report first op_hist - 2
   ]
 end
 
