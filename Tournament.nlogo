@@ -141,6 +141,9 @@ to-report tits-for-twat2 [own_hist op_hist]
     let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
     let pos position -1 results
+    if pos = false[
+      report 10
+    ]
     if item pos op_hist = 10[
       report 10
     ]
@@ -208,13 +211,15 @@ to-report neil-degrasse-tyson [own_hist op_hist]
     ;; Hämta sin egen senaste move
     let results result-list own_hist op_hist length own_hist
     let opponent-total 0
-    foreach results[
+    foreach (n-values length results [?])[
       if item ? results = -1[
         set opponent-total opponent-total + item ? op_hist
       ]
     ]
-    report round opponent-total / length filter [? = -1 ] results
-    ;;report round mean op_hist
+    if length filter [? = -1 ] results != 0[
+      report round opponent-total / length filter [? = -1 ] results
+    ]
+    report 5
   ]
 end
 
@@ -232,7 +237,7 @@ to-report close-enought-guy [own_hist op_hist]
     ;; Hämta motståndarens tre senaste moves
     let results result-list own_hist op_hist length own_hist
     let three-results []
-    foreach results[
+    foreach (n-values length results [?])[
       if item ? results = -1[
         set three-results lput item ? op_hist three-results
         if length three-results = 3[
@@ -249,7 +254,7 @@ to-report even-numbers-guy [own_hist op_hist]
   report ((random 4) + 1) * 2
 end
 
-;; Loler-guy    (börjar på random, tar sedan värdet under motståndarens typv)
+;; Loler-guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens typv)
 to-report loler-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
@@ -258,16 +263,19 @@ to-report loler-guy [own_hist op_hist]
     ;; Hämta sin egen senaste move
     let results result-list own_hist op_hist length own_hist
     let opp-results []
-    foreach results[
+    foreach (n-values length results [?])[
       if item ? results = -1[
         set opp-results lput item ? op_hist opp-results
       ]
     ]
-    report first sort modes opp-results
+    if length opp-results != 0[
+      report first sort modes opp-results
+    ]
+    report (random 9) + 1
   ]
 end
 
-;; Median guy    (börjar på random, tar sedan värdet under motståndarens median)
+;; Median guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens median)
 to-report median-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
@@ -276,12 +284,15 @@ to-report median-guy [own_hist op_hist]
     ;; Hämta motståndarens värden till en lista
     let results result-list own_hist op_hist length own_hist
     let opp-results []
-    foreach results[
+    foreach (n-values length results [?])[
       if item ? results = -1[
         set opp-results lput item ? op_hist opp-results
       ]
     ]
-    report median opp-results - 1
+    if length opp-results != 0[
+      report median opp-results - 1
+    ]
+    report (random 9) + 1
   ]
 end
 
@@ -302,10 +313,24 @@ to-report adjust-guy [own_hist op_hist]
     ;; Hämta vem som vann i senaste matchen
     let results result-list own_hist op_hist 1
     if item 0 results = -1[
-      report first own_hist - 1
+      if first own_hist > 1[
+        show first own_hist
+        show "adjust-guy reports -1"
+        show first own_hist - 1
+        report first own_hist - 1
+      ]
+      show "adjust-guy reports 1"
+      report 1
     ]
     if item 0 results = 1[
-      report first own_hist + 1
+      if first own_hist < 10[
+        show first own_hist
+        show "adjust-guy reports + 1"
+        show first own_hist + 1
+        report first own_hist + 1
+      ]
+      show "adjust-guy reports 10"
+      report 10
     ]
     report first own_hist
   ]
