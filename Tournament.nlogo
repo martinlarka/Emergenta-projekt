@@ -267,11 +267,18 @@ to-report even-numbers-guy [own_hist op_hist]
   report ((random 4) + 1) * 2
 end
 
-;; Loler-guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens typv)
+;; Loler-guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens typvärde)
 to-report loler-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
-    report (random 9) + 1
+    
+    ;; ENDAST FÖR TEST 
+    let result (random 9) + 1
+    show "lolerboy returns: "
+    show result
+    report result
+    ;; //ENDAST FÖR TEST 
+    ;;report (random 9) + 1
   ][
     ;; Hämta sin egen senaste move
     let results result-list own_hist op_hist length own_hist
@@ -282,9 +289,24 @@ to-report loler-guy [own_hist op_hist]
       ]
     ]
     if length opp-results != 0[
+      
+      ;; ENDAST FÖR TEST
+      show op_hist
+      show own_hist
+      show sort modes opp-results
+      show "lolerboy returns: "
+      show first sort modes opp-results
+      ;; //ENDAST FÖR TEST
+      
       report first sort modes opp-results
     ]
-    report (random 9) + 1
+    ;; ENDAST FÖR TEST
+    let theresult (random 9) + 1
+    show "lolerboy returns: "
+    show theresult
+    report theresult
+    ;; //ENDAST FÖR TEST
+    ;;report (random 9) + 1
   ]
 end
 
