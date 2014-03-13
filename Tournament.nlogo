@@ -88,11 +88,11 @@ to-report result-list [own_hist op_hist len]
   foreach (n-values length own_hist_sub [?])[
     if (item ? own_hist_sub) > (item ? op_hist_sub) [
       ;;seger
-      set result_list lput 1 result_list
+      set result_list lput -1 result_list
     ]
     if item ? own_hist_sub < item ? op_hist_sub [
       ;;förlust
-      set result_list lput -1 result_list
+      set result_list lput 1 result_list
     ]
     if item ? own_hist_sub = item ? op_hist_sub [
       ;;lika
@@ -236,20 +236,33 @@ to-report close-enought-guy [own_hist op_hist]
   ][
     ;; Hämta motståndarens tre senaste moves
     let results result-list own_hist op_hist length own_hist
+    show "resultat-lista"
+    show results
     let three-results []
     foreach (n-values length results [?])[
       if item ? results = -1[
         set three-results lput item ? op_hist three-results
         if length three-results = 3[
+          show "egna resultat"
+          show own_hist
+          show "motståndarens resultat"
+          show op_hist
+          show "tre senaste"
+          show three-results
+          show "raporterar medlevärdet av 3 senaste"
+          show round mean three-results
+          show "end round"
           report round mean three-results
         ]
       ]
     ]
+    show "5"
+    show "end round"
     report 5
   ]
 end
 
-;; Even numbers guy  (rnd(1,5)*2)
+;; Even numbers guy  (rnd(1,5)*2)  //Fungerar (Emil)
 to-report even-numbers-guy [own_hist op_hist]
   report ((random 4) + 1) * 2
 end
@@ -275,7 +288,7 @@ to-report loler-guy [own_hist op_hist]
   ]
 end
 
-;; Median guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens median)
+;; Median guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens median)   //Ser ut att fungera (Emil)
 to-report median-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
@@ -290,7 +303,7 @@ to-report median-guy [own_hist op_hist]
       ]
     ]
     if length opp-results != 0[
-      report median opp-results - 1
+      report round median opp-results - 1
     ]
     report (random 9) + 1
   ]
@@ -305,7 +318,7 @@ to-report grudger [own_hist op_hist]
   ]
 end
 
-;; Adjust-guy    (Ökar 1 vid vinst, Minskar 1 vid förlust)
+;; Adjust-guy    (Ökar 1 vid vinst, Minskar 1 vid förlust)  //Borde vara korrekt (Emil)
 to-report adjust-guy [own_hist op_hist]
   ifelse empty? op_hist[
     report 5
@@ -314,22 +327,14 @@ to-report adjust-guy [own_hist op_hist]
     let results result-list own_hist op_hist 1
     if item 0 results = -1[
       if first own_hist > 1[
-        show first own_hist
-        show "adjust-guy reports -1"
-        show first own_hist - 1
         report first own_hist - 1
       ]
-      show "adjust-guy reports 1"
       report 1
     ]
     if item 0 results = 1[
       if first own_hist < 10[
-        show first own_hist
-        show "adjust-guy reports + 1"
-        show first own_hist + 1
         report first own_hist + 1
       ]
-      show "adjust-guy reports 10"
       report 10
     ]
     report first own_hist
