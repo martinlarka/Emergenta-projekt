@@ -14,7 +14,11 @@ to setup
 end
 
 to go
-  ask turtles [foreach (n-values num_strategies [?]) [challenge who ?]]
+  ask turtles[
+    foreach (n-values num_strategies [?])[
+      challenge who ?
+    ]
+  ]
   tick
 end
 
@@ -26,6 +30,11 @@ to challenge [turtle_x turtle_y]
   show "************"
   
   ;; get timestep from turtleX
+  
+  ;; FÖR TEST
+  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
+  ;; // SLUT TEST
+  
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
   let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
@@ -267,7 +276,7 @@ to-report loler-guy [own_hist op_hist]
     
     ;; ENDAST FÖR TEST 
     let result (random 9) + 1
-    show "lolerboy returns: "
+    show "opp-hist empty, lolerboy returns: "
     show result
     report result
     ;; //ENDAST FÖR TEST 
@@ -287,7 +296,7 @@ to-report loler-guy [own_hist op_hist]
       show op_hist
       show own_hist
       show sort modes opp-results
-      show "lolerboy returns: "
+      show "modes counted, lolerboy returns: "
       show first sort modes opp-results
       ;; //ENDAST FÖR TEST
       
@@ -295,7 +304,7 @@ to-report loler-guy [own_hist op_hist]
     ]
     ;; ENDAST FÖR TEST
     let theresult (random 9) + 1
-    show "lolerboy returns: "
+    show "has only won yet, lolerboy returns: "
     show theresult
     report theresult
     ;; //ENDAST FÖR TEST
