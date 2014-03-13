@@ -309,11 +309,21 @@ to-report median-guy [own_hist op_hist]
   ]
 end
 
-;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy).
+;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy). 
+;; Ser ut att fungera /93
 to-report grudger [own_hist op_hist]
-  ifelse empty? op_hist or first op_hist = 10[
+  ifelse empty? op_hist[
     report 10
   ][
+    let results result-list own_hist op_hist length own_hist
+    foreach (n-values length results [?])[
+      if item ? results = 0[
+        if item ? op_hist = 10[
+          report 10
+        ]
+        report 1
+      ]
+    ]
     report 1
   ]
 end
