@@ -19,6 +19,12 @@ to go
 end
 
 to challenge [turtle_x turtle_y]
+  show "Nu möts Turtle:"
+  show turtle_x
+  show "& Turtle:"
+  show turtle_y
+  show "************"
+  
   ;; get timestep from turtleX
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
@@ -228,7 +234,7 @@ to-report robocop [own_hist op_hist]
   report 5
 end
 
-;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)
+;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)  //Borde fungera (Emil)
 to-report close-enought-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
@@ -236,28 +242,15 @@ to-report close-enought-guy [own_hist op_hist]
   ][
     ;; Hämta motståndarens tre senaste moves
     let results result-list own_hist op_hist length own_hist
-    show "resultat-lista"
-    show results
     let three-results []
     foreach (n-values length results [?])[
-      if item ? results = -1[
+      if item ? results = -1 or item ? results = 0[
         set three-results lput item ? op_hist three-results
         if length three-results = 3[
-          show "egna resultat"
-          show own_hist
-          show "motståndarens resultat"
-          show op_hist
-          show "tre senaste"
-          show three-results
-          show "raporterar medlevärdet av 3 senaste"
-          show round mean three-results
-          show "end round"
           report round mean three-results
         ]
       ]
     ]
-    show "5"
-    show "end round"
     report 5
   ]
 end
@@ -284,7 +277,7 @@ to-report loler-guy [own_hist op_hist]
     let results result-list own_hist op_hist length own_hist
     let opp-results []
     foreach (n-values length results [?])[
-      if item ? results = -1[
+      if item ? results = -1 or item ? results = 0[ ;; om motståndaren vunnit eller om det blivit lika
         set opp-results lput item ? op_hist opp-results
       ]
     ]
@@ -363,7 +356,7 @@ to-report adjust-guy [own_hist op_hist]
       ]
       report 1
     ]
-    if item 0 results = 1[
+    if item 0 results = 1 or item 0 results = 0[
       if first own_hist < 10[
         report first own_hist + 1
       ]
