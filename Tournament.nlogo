@@ -24,9 +24,6 @@ end
 
 to challenge [turtle_x turtle_y]
   
-  print ""
-  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
-  
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
   let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
@@ -363,8 +360,8 @@ GRAPHICS-WINDOW
 16
 -16
 16
-0
-0
+1
+1
 1
 ticks
 30.0
