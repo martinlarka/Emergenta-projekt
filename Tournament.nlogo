@@ -24,8 +24,8 @@ end
 
 to challenge [turtle_x turtle_y]
   
-  print ""
-  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
+  ;;print ""
+  ;;type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
   
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
@@ -326,13 +326,16 @@ to-report adjust-guy [own_hist op_hist]
   ][
     ;; Hämta vem som vann i senaste matchen
     let results result-list own_hist op_hist 1
-    if item 0 results = -1[
+    if item 0 results = -1 or item 0 results = 0[
+      if first op_hist = 10[
+        report 10
+      ]
       if first own_hist > 1[
         report first own_hist - 1
       ]
       report 1
     ]
-    if item 0 results = 1 or item 0 results = 0[
+    if item 0 results = 1[
       if first own_hist < 10[
         report first own_hist + 1
       ]
