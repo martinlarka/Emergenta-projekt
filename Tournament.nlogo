@@ -25,11 +25,6 @@ to go
 end
 
 to challenge [turtle_x turtle_y]
-<<<<<<< HEAD
- 
-=======
-  
->>>>>>> FETCH_HEAD
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
   let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
@@ -333,15 +328,6 @@ to-report adjust-guy [own_hist op_hist]
   ]
 end
 
-<<<<<<< HEAD
-to-report rep-points [num]
-  ask turtle 0 [
-    report points
-  ]
-=======
-to-report print-last-score 
- 
->>>>>>> FETCH_HEAD
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -467,31 +453,6 @@ PENS
 "close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot (points / (num_strategies * ticks))]"
 
 PLOT
-<<<<<<< HEAD
-=======
-676
-70
-990
-351
-Points-3
-NIL
-NIL
-0.0
-10.0
-0.0
-5.0
-true
-false
-"" ""
-PENS
-"even-numbers-guy" 1.0 0 -8053223 true "" "ask turtle 10[plot (points / (num_strategies * ticks))]"
-"loler-guy" 1.0 0 -1184463 true "" "ask turtle 11[plot (points / (num_strategies * ticks))]"
-"median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot (points / (num_strategies * ticks))]"
-"grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot (points / (num_strategies * ticks))]"
-"adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot (points / (num_strategies * ticks))]"
-
-PLOT
->>>>>>> FETCH_HEAD
 15
 360
 329
