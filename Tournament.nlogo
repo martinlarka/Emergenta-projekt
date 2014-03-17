@@ -143,17 +143,6 @@ to-report tits-for-twat2 [own_hist op_hist]
     ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
-    if position -1 results != false and pos != false[
-      if (position -1 results) < (position 0 results)[
-        show "hej"
-        set pos position -1 results
-      ]
-    ]
-    if pos = false[
-      report 10
-    ]
-    if item pos op_hist = 10[
-      report 10
    if first results != -1[
       report first own_hist
     ]
@@ -269,7 +258,7 @@ to-report even-numbers-guy [own_hist op_hist]
   report ((random 4) + 1) * 2
 end
 
-;; Loler-guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens typv)
+;; Loler-guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens typvärde)
 to-report loler-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
@@ -279,7 +268,7 @@ to-report loler-guy [own_hist op_hist]
     let results result-list own_hist op_hist length own_hist
     let opp-results []
     foreach (n-values length results [?])[
-      if item ? results = -1[
+      if item ? results = -1 or item ? results = 0[ ;; om motståndaren vunnit eller om det blivit lika
         set opp-results lput item ? op_hist opp-results
       ]
     ]
@@ -300,7 +289,7 @@ to-report median-guy [own_hist op_hist]
     let results result-list own_hist op_hist length own_hist
     let opp-results []
     foreach (n-values length results [?])[
-      if item ? results = -1 or item ? results = 0[ ;; om motståndaren vunnit eller om det blivit lika
+      if item ? results = -1[
         set opp-results lput item ? op_hist opp-results
       ]
     ]
@@ -311,11 +300,21 @@ to-report median-guy [own_hist op_hist]
   ]
 end
 
-;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy).
+;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy). 
+;; Ser ut att fungera /93
 to-report grudger [own_hist op_hist]
-  ifelse empty? op_hist or first op_hist = 10[
+  ifelse empty? op_hist[
     report 10
   ][
+    let results result-list own_hist op_hist length own_hist
+    foreach (n-values length results [?])[
+      if item ? results = 0[
+        if item ? op_hist = 10[
+          report 10
+        ]
+        report 1
+      ]
+    ]
     report 1
   ]
 end
