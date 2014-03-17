@@ -950,6 +950,43 @@ NetLogo 5.0.5
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="4" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1500"/>
+    <metric>[points] of turtle 0</metric>
+    <metric>[num_wins] of turtle 0</metric>
+    <metric>[points] of turtle 1</metric>
+    <metric>[num_wins] of turtle 1</metric>
+    <metric>[points] of turtle 2</metric>
+    <metric>[num_wins] of turtle 2</metric>
+    <metric>[points] of turtle 3</metric>
+    <metric>[num_wins] of turtle 3</metric>
+    <metric>[points] of turtle 4</metric>
+    <metric>[num_wins] of turtle 4</metric>
+    <metric>[points] of turtle 5</metric>
+    <metric>[num_wins] of turtle 5</metric>
+    <metric>[points] of turtle 6</metric>
+    <metric>[num_wins] of turtle 6</metric>
+    <metric>[points] of turtle 7</metric>
+    <metric>[num_wins] of turtle 7</metric>
+    <metric>[points] of turtle 8</metric>
+    <metric>[num_wins] of turtle 8</metric>
+    <metric>[points] of turtle 9</metric>
+    <metric>[num_wins] of turtle 9</metric>
+    <metric>[points] of turtle 10</metric>
+    <metric>[num_wins] of turtle 10</metric>
+    <metric>[points] of turtle 11</metric>
+    <metric>[num_wins] of turtle 11</metric>
+    <metric>[points] of turtle 12</metric>
+    <metric>[num_wins] of turtle 12</metric>
+    <metric>[points] of turtle 13</metric>
+    <metric>[num_wins] of turtle 13</metric>
+    <metric>[points] of turtle 14</metric>
+    <metric>[num_wins] of turtle 14</metric>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
