@@ -1,0 +1,111 @@
+%Original version in April 2002 by Antje Endemann
+%
+%Adapted for usage in Student Conference course by jubo (050118).
+%Optimized for usage with pdflatex. For usage with plain latex,
+%figures must be in Postscript (.ps or .eps files) and additional
+%packages must be imported.
+%Last updated 100105 by jubo
+%
+%This template works for outline and annotated bibliography
+%(deliverable 2) without any changes.
+%For usage with full and final papers (deliverables 3 and 4a/b)
+%you must make several changes. All necessary changes are
+%described in three specific commented sections preceded by
+%`%%%%% BEGIN OF ADJUSTMENTS SECTION %%%%%'.
+%The changes are in order of appearance:
+%   - adjust the `\documentclass' command
+%   - uncomment the abstract section
+%   - adjust the `\bibliographystyle' command
+
+%%%%% BEGIN OF 1st ADJUSTMENTS SECTION %%%%%
+% You must use only one of the following `\documentclass' commands
+% For the outline and annotated bibliography (deliverable 2)
+% you must use the following command:
+%
+\documentclass[runningheads,a4paper,oribibl]{llncs}
+%
+%For the full and final paper (deliverables 3 and 4a/b)
+% you must use the command below (and put the one above in comments).
+% In other words, the 'oribib' option must be used for Deliverable 2
+% but not for 3 and 4a/b.
+% 
+%
+%\documentclass[runningheads,a4paper]{llncs}
+%
+%%%%% END OF 1st ADJUSTMENTS SECTION %%%%%
+
+\usepackage[T1]{fontenc}  %% needed for special characters (umlaut)
+\usepackage[latin1]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{graphicx}     %% for graphical things such as including pictures
+\usepackage{url}          %% for proper formatting of URLs
+
+\begin{document}
+
+\pagestyle{headings}
+
+\mainmatter
+
+\title{Projekt: Ultimata strategin i Paradise Hotel-finalen}
+
+% The abbreviated title will be shown in the headers of even pages.
+% You should use the full title unless it is too long.
+\titlerunning{Strategi i Paradise Hotel-finalen}
+
+\author{Johan Holmgren, Martin L‰rka, Emil Edsk‰r och Peter Bjuhr}
+
+\institute{
+    Department of Computing Science \\
+    UmeÂ University, Sweden \\
+    \email{id10jhn@cs.umu.se \\ id10mla@cs.umu.se \\ id10eer@cs.umu.se \\ id10pbl@cs.umu.se}
+}
+
+\maketitle
+
+\begin{abstract}
+	Here goes the actual text of your abstract. 
+	Â≈‰ƒˆ÷
+\end{abstract}
+
+\newpage
+
+\section{Inledning}
+\input{sektioner/inledning.tex}
+
+\section{Bakgrund}
+\input{sektioner/bakgrund.tex}
+
+\newpage
+
+\section{Metod}
+\input{sektioner/metod.tex}
+
+\newpage
+
+\section{Resultat}
+\input{sektioner/resultat.tex}
+
+\newpage
+
+\section{Diskussion}
+\input{sektioner/diskussion.tex}
+
+%%%%% BEGIN OF 3rd ADJUSTMENTS SECTION %%%%%
+% For the outline and annotated bibliography (deliverable 2)
+% you must use the following two commands:
+%
+\nocite{*}  % Includes ALL entries from the .bib-file, even if they are
+            % not '\cite{}'-ed in the text above
+\bibliographystyle{plain-annote}
+%
+%For the full and final paper (deliverables 3 and 4a/b)
+% use ONLY the following commands (i.e. put the commands above into
+% comments and uncomment the command below):
+%
+% \bibliographystyle{splncs}
+%
+%%%%% END OF ADJUSTMENTS SECTION %%%%%
+
+\bibliography{rapport}
+
+\end{document}
