@@ -14,13 +14,19 @@ to setup
 end
 
 to go
-  ask turtles [foreach (n-values num_strategies [?]) [challenge who ?]]
+  ask turtles[
+    foreach (n-values num_strategies [?])[
+      challenge who ?
+    ]
+  ]
   tick
 end
 
 to challenge [turtle_x turtle_y]
+  ;; FÖR TEST
+  ;;type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
+  ;; // SLUT TEST
   
-  ;; get timestep from turtleX
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
   let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
@@ -116,17 +122,13 @@ to-report tits-for-twat [own_hist op_hist]
     ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
-    let pos position -1 results
-    if pos = false[
-      report 10
+    if first results != -1[
+      report first own_hist
     ]
-    if item pos op_hist = 10[
-      report 10
-    ]
-    if item pos op_hist <= 2[
+    if first op_hist <= 2[
       report 1
     ]
-    report item pos op_hist - 1
+    report first op_hist - 1
   ]
   
 end
@@ -141,13 +143,6 @@ to-report tits-for-twat2 [own_hist op_hist]
     ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
-    show results
-    let pos position 0 results
-    show "första -1"
-    show position -1 results
-    show "första 0"
-    show position 0 results
-    show "***********"
     if position -1 results != false and pos != false[
       if (position -1 results) < (position 0 results)[
         show "hej"
@@ -159,11 +154,13 @@ to-report tits-for-twat2 [own_hist op_hist]
     ]
     if item pos op_hist = 10[
       report 10
+   if first results != -1[
+      report first own_hist
     ]
-    if item pos op_hist <= 2[
+    if first op_hist <= 2[
       report 1
     ]
-    report item pos op_hist - 2
+    report first op_hist - 2
   ]
 end
 
@@ -215,22 +212,27 @@ to-report good-guy-greg [own_hist op_hist]
 end
 
 ;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
+;; Ser ut att funka /93
 to-report neil-degrasse-tyson [own_hist op_hist]
   
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
     report 5
   ][
-    ;; Hämta sin egen senaste move
+    ;; Hämta resultatlista
     let results result-list own_hist op_hist length own_hist
-    let opponent-total 0
+    let opponent-total 0    
+    
+    ;;Gå igenom resultatlistan och lägg till motståndarens tillgängliga värden till en total
     foreach (n-values length results [?])[
-      if item ? results = -1[
+      if item ? results = -1 or item ? results = 0[
         set opponent-total opponent-total + item ? op_hist
       ]
     ]
-    if length filter [? = -1 ] results != 0[
-      report round opponent-total / length filter [? = -1 ] results
+    ;;Om motståndaren har tillgängliga resultat
+    if length filter [? = -1 or ? = 0] results != 0[
+      ;;Rapportera det avrundade medelvärdet av motståndarens resultat
+      report round (opponent-total / length filter [? = -1 or ? = 0] results)
     ]
     report 5
   ]
