@@ -1,4 +1,4 @@
-turtles-own [own_history opponent_history points num_wins]
+turtles-own [own_history opponent_history points num_wins tick-score]
 
 to setup
   ;; Create turtles and give them strategies
@@ -9,12 +9,14 @@ to setup
       set own_history []
       repeat num_strategies [set own_history lput [] own_history]
       set opponent_history []
+      set tick-score []
       repeat num_strategies [set opponent_history lput [] opponent_history]]
   reset-ticks
 end
 
 to go
   ask turtles[
+    set tick-score []
     foreach (n-values num_strategies [?])[
       challenge who ?
     ]
@@ -23,7 +25,11 @@ to go
 end
 
 to challenge [turtle_x turtle_y]
+<<<<<<< HEAD
  
+=======
+  
+>>>>>>> FETCH_HEAD
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
   let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
@@ -38,6 +44,7 @@ to challenge [turtle_x turtle_y]
   [;; If x-move and y-move == 10
     set points points + 5
     set num_wins num_wins + 1
+    set tick-score lput 5 tick-score
   ]
   ;; There is a winner
   [if x_move < y_move 
@@ -45,6 +52,7 @@ to challenge [turtle_x turtle_y]
     [
      ;; Increase points
      set points (points + x_move)
+     set tick-score lput x_move tick-score
      ;; Uppdate num-wins
      set num_wins (num_wins + 1)
     ]
@@ -325,10 +333,15 @@ to-report adjust-guy [own_hist op_hist]
   ]
 end
 
+<<<<<<< HEAD
 to-report rep-points [num]
   ask turtle 0 [
     report points
   ]
+=======
+to-report print-last-score 
+ 
+>>>>>>> FETCH_HEAD
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -418,16 +431,18 @@ NIL
 0.0
 10.0
 0.0
-10.0
+5.0
 true
 false
 "" ""
 PENS
-"tit-for-tat" 1.0 0 -8053223 true "" "ask turtle 0[plot points]"
-"tit-for-2-tat" 1.0 0 -1184463 true "" "ask turtle 1[plot points]"
-"random-dude" 1.0 0 -13345367 true "" "ask turtle 2[plot points]"
-"its-something-guy" 1.0 0 -13840069 true "" "ask turtle 3[plot points]"
-"scumbag-steve" 1.0 0 -8630108 true "" "ask turtle 4[plot points]"
+"tit-for-tat" 1.0 0 -8053223 true "" "ask turtle 0[plot (points / (num_strategies * ticks))]"
+"tit-for-2-tat" 1.0 0 -1184463 true "" "ask turtle 1[plot (points / (num_strategies * ticks))]"
+"random-dude" 1.0 0 -13345367 true "" "ask turtle 2[plot (points / (num_strategies * ticks))]"
+"its-something-guy" 1.0 0 -13840069 true "" "ask turtle 3[plot (points / (num_strategies * ticks))]"
+"scumbag-steve" 1.0 0 -8630108 true "" "ask turtle 4[plot (points / (num_strategies * ticks))]"
+"pen-5" 1.0 0 -7500403 true "" ""
+"pen-6" 1.0 0 -2674135 true "" ""
 
 PLOT
 344
@@ -440,18 +455,43 @@ NIL
 0.0
 10.0
 0.0
-10.0
+5.0
 true
 false
 "" ""
 PENS
-"scumbag-stacy" 1.0 0 -8053223 true "" "ask turtle 5[plot points]"
-"good-guy-greg" 1.0 0 -1184463 true "" "ask turtle 6[plot points]"
-"neil-degrasse-tyson" 1.0 0 -13345367 true "" "ask turtle 7[plot points]"
-"robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot points]"
-"close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot points]"
+"scumbag-stacy" 1.0 0 -8053223 true "" "ask turtle 5[plot (points / (num_strategies * ticks))]"
+"good-guy-greg" 1.0 0 -1184463 true "" "ask turtle 6[plot (points / (num_strategies * ticks))]"
+"neil-degrasse-tyson" 1.0 0 -13345367 true "" "ask turtle 7[plot (points / (num_strategies * ticks))]"
+"robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot (points / (num_strategies * ticks))]"
+"close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot (points / (num_strategies * ticks))]"
 
 PLOT
+<<<<<<< HEAD
+=======
+676
+70
+990
+351
+Points-3
+NIL
+NIL
+0.0
+10.0
+0.0
+5.0
+true
+false
+"" ""
+PENS
+"even-numbers-guy" 1.0 0 -8053223 true "" "ask turtle 10[plot (points / (num_strategies * ticks))]"
+"loler-guy" 1.0 0 -1184463 true "" "ask turtle 11[plot (points / (num_strategies * ticks))]"
+"median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot (points / (num_strategies * ticks))]"
+"grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot (points / (num_strategies * ticks))]"
+"adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot (points / (num_strategies * ticks))]"
+
+PLOT
+>>>>>>> FETCH_HEAD
 15
 360
 329
