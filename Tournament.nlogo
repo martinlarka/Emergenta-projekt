@@ -23,12 +23,9 @@ to go
 end
 
 to challenge [turtle_x turtle_y]
-  ;; FÖR TEST
-  if turtle_x = 11[
-    print ""
-    type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
-  ]
-  ;; // SLUT TEST
+  
+  print ""
+  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
   
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
@@ -264,12 +261,7 @@ end
 to-report loler-guy [own_hist op_hist]
   ;; Kolla om listan är tom
   ifelse empty? op_hist[
-    ;; ENDAST FÖR TEST 
-    let result (random 9) + 1
-    type "lolerboy returns: " type result print ", (random) opp-history was empty"
-    report result
-    ;; //ENDAST FÖR TEST 
-    ;;report (random 9) + 1
+    report (random 9) + 1
   ][
     ;; Hämta sin egen senaste move
     let results result-list own_hist op_hist length own_hist
@@ -280,18 +272,10 @@ to-report loler-guy [own_hist op_hist]
       ]
     ]
     if length opp-results != 0[
-      ;; ENDAST FÖR TEST
-      type "opp-hist: " print op_hist
-      type "own-hist: " print own_hist
-      type "lolerboy returns: " type first sort modes opp-results print ", modes was calculated"
-      ;; //ENDAST FÖR TEST
-      report first sort modes opp-results
+      let typv modes opp-results
+      report first sort typv
     ]
-    ;; ENDAST FÖR TEST
-    let theresult (random 9) + 1
-    type "lolerboy returns: " type theresult print ", (random) this agent had only won"
-    report theresult
-    ;; //ENDAST FÖR TEST
+    report (random 9) + 1
   ]
 end
 
