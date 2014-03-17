@@ -136,11 +136,11 @@ end
 to-report tits-for-twat2 [own_hist op_hist]
   
   ;; Kolla om listan är tom
-  ifelse empty? op_hist[
+  ifelse length op_hist < 2[
     report 10
   ][
     ;; Hämta resultatlista
-    let results result-list own_hist op_hist length own_hist
+   let results result-list own_hist op_hist length own_hist
     ;; Hämta motståndarens senaste drag
    if first results != -1[
       report first own_hist
@@ -148,7 +148,7 @@ to-report tits-for-twat2 [own_hist op_hist]
     if first op_hist <= 2[
       report 1
     ]
-    report first op_hist - 2
+    report first op_hist - 1
   ]
 end
 
