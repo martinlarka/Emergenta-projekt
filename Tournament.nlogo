@@ -24,7 +24,10 @@ end
 
 to challenge [turtle_x turtle_y]
   ;; FÖR TEST
-  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
+  if turtle_x = 11[
+    print ""
+    type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
+  ]
   ;; // SLUT TEST
   
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
@@ -57,7 +60,6 @@ to challenge [turtle_x turtle_y]
   ;; Uppdate history on turtles
   set own_history replace-item turtle_y own_history (fput x_move item turtle_y own_history)
   set opponent_history replace-item turtle_y opponent_history (fput y_move item turtle_y opponent_history)
-  
 end
 
 to-report calc-move [strategy own_hist op_hist]
@@ -268,7 +270,7 @@ to-report loler-guy [own_hist op_hist]
     
     ;; ENDAST FÖR TEST 
     let result (random 9) + 1
-    type "lolerboy returns: " type result print ", opp-history was empty"
+    type "lolerboy returns: " type result print ", (random) opp-history was empty"
     report result
     ;; //ENDAST FÖR TEST 
     ;;report (random 9) + 1
@@ -284,18 +286,16 @@ to-report loler-guy [own_hist op_hist]
     if length opp-results != 0[
       
       ;; ENDAST FÖR TEST
-      show op_hist
-      show own_hist
-      type "lolerboy returns: " type first sort modes opp-results print ", modes "
-      show first sort modes opp-results
+      type "opp-hist" print op_hist
+      type "own-hist" print own_hist
+      type "lolerboy returns: " type first sort modes opp-results print ", modes was calculated"
       ;; //ENDAST FÖR TEST
       
       report first sort modes opp-results
     ]
     ;; ENDAST FÖR TEST
     let theresult (random 9) + 1
-    show "has only won yet, lolerboy returns: "
-    show theresult
+    type "lolerboy returns: " type theresult print ", (random) this agent had only won"
     report theresult
     ;; //ENDAST FÖR TEST
     ;;report (random 9) + 1
