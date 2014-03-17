@@ -23,10 +23,7 @@ to go
 end
 
 to challenge [turtle_x turtle_y]
-  
-  print ""
-  type "nu spelar följande turtles: " type turtle_x type " vs " print turtle_y
-  
+ 
   let x_move calc-move turtle_x (item turtle_y own_history) (item turtle_y opponent_history) 
   
   let y_move calc-move turtle_y (item turtle_y opponent_history) (item turtle_y own_history)
@@ -60,21 +57,7 @@ to challenge [turtle_x turtle_y]
 end
 
 to-report calc-move [strategy own_hist op_hist]
-  if strategy = 0 [report tits-for-twat own_hist op_hist]
-  if strategy = 1 [report tits-for-twat2 own_hist op_hist]
-  if strategy = 2 [report random-dude own_hist op_hist]
-  if strategy = 3 [report its-something-guy own_hist op_hist]
-  if strategy = 4 [report scumbag-steve own_hist op_hist]
-  if strategy = 5 [report scumbag-stacy own_hist op_hist]
-  if strategy = 6 [report good-guy-greg own_hist op_hist]
-  if strategy = 7 [report neil-degrasse-tyson own_hist op_hist]
-  if strategy = 8 [report robocop own_hist op_hist]
-  if strategy = 9 [report close-enought-guy own_hist op_hist]
-  if strategy = 10 [report even-numbers-guy own_hist op_hist]
-  if strategy = 11 [report loler-guy own_hist op_hist]
-  if strategy = 12 [report median-guy own_hist op_hist]
-  if strategy = 13 [report grudger own_hist op_hist]
-  if strategy = 14 [report adjust-guy own_hist op_hist]
+  report strategy + 1
 end
 
 to-report get-opponent-history [opponent]
@@ -341,15 +324,21 @@ to-report adjust-guy [own_hist op_hist]
     report first own_hist
   ]
 end
+
+to-report rep-points [num]
+  ask turtle 0 [
+    report points
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
-812
-10
-1251
-470
+671
+68
+916
+323
 16
 16
-13.0
+6.8
 1
 10
 1
@@ -412,7 +401,7 @@ num_strategies
 num_strategies
 1
 15
-15
+10
 1
 1
 NIL
@@ -463,28 +452,6 @@ PENS
 "close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot points]"
 
 PLOT
-676
-70
-990
-351
-Points-3
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"even-numbers-guy" 1.0 0 -8053223 true "" "ask turtle 10[plot points]"
-"loler-guy" 1.0 0 -1184463 true "" "ask turtle 11[plot points]"
-"median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot points]"
-"grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot points]"
-"adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot points]"
-
-PLOT
 15
 360
 329
@@ -528,12 +495,62 @@ PENS
 "robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot num_wins]"
 "close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot num_wins]"
 
+TEXTBOX
+705
+128
+855
+172
+Plot 1: 1\nPlot 2: 6
+11
+13.0
+1
+
+TEXTBOX
+705
+161
+855
+205
+Plot 1: 2\nPlot 2: 7
+11
+45.0
+1
+
+TEXTBOX
+706
+229
+856
+273
+Plot 1: 4\nPlot 2: 9
+11
+65.0
+1
+
+TEXTBOX
+706
+194
+879
+238
+Plot 1: 3\nPlot 2: 8\n
+11
+105.0
+1
+
+TEXTBOX
+704
+264
+854
+308
+Plot 1: 5\nPlot 2: 10\n
+11
+115.0
+1
+
 PLOT
-677
-361
-991
-642
-num_wins-3
+868
+187
+1197
+469
+4an 5an 6an
 NIL
 NIL
 0.0
@@ -544,61 +561,9 @@ true
 false
 "" ""
 PENS
-"even-numbers-guy" 1.0 0 -8053223 true "" "ask turtle 10[plot num_wins]"
-"loler-guy" 1.0 0 -1184463 true "" "ask turtle 11[plot num_wins]"
-"median-guy" 1.0 0 -13345367 true "" "ask turtle 12[plot num_wins]"
-"grudger" 1.0 0 -13840069 true "" "ask turtle 13[plot num_wins]"
-"adjust-guy" 1.0 0 -8630108 true "" "ask turtle 14[plot num_wins]"
-
-TEXTBOX
-1001
-42
-1151
-86
-Plot 1: tit-for-tat \nPlot 2: scumbag-stacy \nPlot 3: even-numbers-guy\n
-11
-13.0
-1
-
-TEXTBOX
-1000
-92
-1150
-136
-Plot 1: tit-for-2-tat \nPlot 2: good-guy-greg \nPlot 3: loler-guy\n
-11
-45.0
-1
-
-TEXTBOX
-999
-193
-1149
-237
-Plot 1: its-something-guy \nPlot 2: robocop \nPlot 3: grudger\n
-11
-65.0
-1
-
-TEXTBOX
-1000
-145
-1173
-189
-Plot 1: random-dude \nPlot 2: neil-degrasse-tyson \nPlot 3: median-guy\n
-11
-105.0
-1
-
-TEXTBOX
-999
-242
-1149
-286
-Plot 1: scumbag-steve \nPlot 2: close-enought-guy \nPlot 3: adjust-guy\n
-11
-115.0
-1
+"default" 1.0 0 -13840069 true "" "ask turtle 3[plot points]"
+"pen-1" 1.0 0 -8630108 true "" "ask turtle 4[plot points]"
+"pen-2" 1.0 0 -2674135 true "" "ask turtle 5[plot points]"
 
 @#$#@#$#@
 ## WHAT IS IT?
