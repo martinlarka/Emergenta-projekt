@@ -52,8 +52,7 @@ to challenge [turtle_x turtle_y]
      set num_wins (num_wins + 1)
     ]
   ;; Turtle_y wins do nothing
-  
-   ]
+  ]
   ;; Uppdate history on turtles
   set own_history replace-item turtle_y own_history (fput x_move item turtle_y own_history)
   set opponent_history replace-item turtle_y opponent_history (fput y_move item turtle_y opponent_history)
@@ -92,242 +91,6 @@ to-report result-list [own_hist op_hist len]
     ]
   ]
   report result_list
-end
-
-
-;;; Strategies - reports move from 1-10
-
-;; Tits for twat!     (Håll hela första, sedan släppa steget innan den andra släppte)
-to-report tits-for-twat [own_hist op_hist]
-
-  ;; Kolla om listan är tom
-  ifelse empty? op_hist[
-    report 10
-  ][
-    ;; Hämta resultatlista
-    let results result-list own_hist op_hist length own_hist
-    ;; Hämta motståndarens senaste drag
-    if first results != -1[
-      report first own_hist
-    ]
-    if first op_hist <= 2[
-      report 1
-    ]
-    report first op_hist - 1
-  ]
-  
-end
-
-;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
-to-report tits-for-twat2 [own_hist op_hist]
-  
-  ;; Kolla om listan är tom
-  ifelse empty? op_hist[
-    report 10
-  ][
-    ;; Hämta resultatlista
-    let results result-list own_hist op_hist length own_hist
-    ;; Hämta motståndarens senaste drag
-   if first results != -1[
-      report first own_hist
-    ]
-    if first op_hist <= 2[
-      report 1
-    ]
-    report first op_hist - 2
-  ]
-end
-
-;; Random dude!    (rnd(1,10))
-to-report random-dude [own_hist op_hist]
-  report (random 9) + 1
-end
-
-;; It’s something guy   (1-1-1-...-1)
-to-report its-something-guy [own_hist op_hist]
-  report 1
-end
-
-;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
-to-report scumbag-steve [own_hist op_hist]
-  
-  ;; Kolla om listan är tom
-  ifelse empty? own_hist[
-    report 5
-  ][
-    ;; Hämta sin egen senaste move
-    ifelse first own_hist = 1[
-      report 5
-    ][
-      report (first own_hist) - 1
-    ]
-  ]
-end
-
-;; Scumbag Stacy  (5-3-1-5-3-1-5-3-1...)
-to-report scumbag-stacy [own_hist op_hist]
-  
-  ;; Kolla om listan är tom
-  ifelse empty? own_hist[
-    report 5
-  ][
-    ;; Hämta sin egen senaste move
-    ifelse first own_hist = 1[
-      report 5
-    ][
-      report (first own_hist) - 2
-    ]
-  ]
-end
-
-;; Good guy Greg   (10-10-10-...-10)
-to-report good-guy-greg [own_hist op_hist]
-  report 10
-end
-
-;; Neil Degrasse Tyson   (börjar på mitten, mean(opponent-plays))
-;; Ser ut att funka /93
-to-report neil-degrasse-tyson [own_hist op_hist]
-  
-  ;; Kolla om listan är tom
-  ifelse empty? op_hist[
-    report 5
-  ][
-    ;; Hämta resultatlista
-    let results result-list own_hist op_hist length own_hist
-    let opponent-total 0    
-    
-    ;;Gå igenom resultatlistan och lägg till motståndarens tillgängliga värden till en total
-    foreach (n-values length results [?])[
-      if item ? results = -1 or item ? results = 0[
-        set opponent-total opponent-total + item ? op_hist
-      ]
-    ]
-    ;;Om motståndaren har tillgängliga resultat
-    if length filter [? = -1 or ? = 0] results != 0[
-      ;;Rapportera det avrundade medelvärdet av motståndarens resultat
-      report round (opponent-total / length filter [? = -1 or ? = 0] results)
-    ]
-    report 5
-  ]
-end
-
-;; Robocop  (5-5-5-...-5)
-to-report robocop [own_hist op_hist]
-  report 5
-end
-
-;; Close enough guy  (kör mitten de 3 första omgångarna, Medelvärdet av motståndarens 3 senaste actions i släpphistorik)  //Borde fungera (Emil)
-to-report close-enought-guy [own_hist op_hist]
-  ;; Kolla om listan är tom
-  ifelse empty? op_hist[
-    report 5
-  ][
-    ;; Hämta motståndarens tre senaste moves
-    let results result-list own_hist op_hist length own_hist
-    let three-results []
-    foreach (n-values length results [?])[
-      if item ? results = -1 or item ? results = 0[
-        set three-results lput item ? op_hist three-results
-        if length three-results = 3[
-          report round mean three-results
-        ]
-      ]
-    ]
-    report 5
-  ]
-end
-
-;; Even numbers guy  (rnd(1,5)*2)  //Fungerar (Emil)
-to-report even-numbers-guy [own_hist op_hist]
-  report ((random 4) + 1) * 2
-end
-
-;; Loler-guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens typvärde)
-to-report loler-guy [own_hist op_hist]
-  ;; Kolla om listan är tom
-  ifelse empty? op_hist[
-    report (random 9) + 1
-  ][
-    ;; Hämta sin egen senaste move
-    let results result-list own_hist op_hist length own_hist
-    let opp-results []
-    foreach (n-values length results [?])[
-      if item ? results = -1 or item ? results = 0[ ;; om motståndaren vunnit eller om det blivit lika
-        set opp-results lput item ? op_hist opp-results
-      ]
-    ]
-    if length opp-results != 0[
-      let typv modes opp-results
-      report first sort typv
-    ]
-    report (random 9) + 1
-  ]
-end
-
-;; Median guy    (kör på random tills motståndaren vunnit en gång, tar sedan värdet under motståndarens median)   //Ser ut att fungera (Emil)
-to-report median-guy [own_hist op_hist]
-  ;; Kolla om listan är tom
-  ifelse empty? op_hist[
-    report (random 9) + 1
-  ][
-    ;; Hämta motståndarens värden till en lista
-    let results result-list own_hist op_hist length own_hist
-    let opp-results []
-    foreach (n-values length results [?])[
-      if item ? results = -1[
-        set opp-results lput item ? op_hist opp-results
-      ]
-    ]
-    if length opp-results != 0[
-      report round median opp-results - 1
-    ]
-    report (random 9) + 1
-  ]
-end
-
-;; Grudger     (Good guy greg tills motståndaren blåser honom,  sen it’s something guy). 
-;; Ser ut att fungera /93
-to-report grudger [own_hist op_hist]
-  ifelse empty? op_hist[
-    report 10
-  ][
-    let results result-list own_hist op_hist length own_hist
-    foreach (n-values length results [?])[
-      if item ? results = 0[
-        if item ? op_hist = 10[
-          report 10
-        ]
-        report 1
-      ]
-    ]
-    report 1
-  ]
-end
-
-;; Adjust-guy    (Ökar 1 vid vinst, Minskar 1 vid förlust)  //Borde vara korrekt (Emil)
-to-report adjust-guy [own_hist op_hist]
-  ifelse empty? op_hist[
-    report 5
-  ][
-    ;; Hämta vem som vann i senaste matchen
-    let results result-list own_hist op_hist 1
-    if item 0 results = -1[
-      if first own_hist > 1[
-        report first own_hist - 1
-      ]
-      report 1
-    ]
-    if item 0 results = 1 or item 0 results = 0[
-      if first own_hist < 10[
-        report first own_hist + 1
-      ]
-      report 10
-    ]
-    report first own_hist
-  ]
-end
-
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -422,11 +185,11 @@ true
 false
 "" ""
 PENS
-"tit-for-tat" 1.0 0 -8053223 true "" "ask turtle 0[plot (points / (num_strategies * ticks))]"
-"tit-for-2-tat" 1.0 0 -1184463 true "" "ask turtle 1[plot (points / (num_strategies * ticks))]"
-"random-dude" 1.0 0 -13345367 true "" "ask turtle 2[plot (points / (num_strategies * ticks))]"
-"its-something-guy" 1.0 0 -13840069 true "" "ask turtle 3[plot (points / (num_strategies * ticks))]"
-"scumbag-steve" 1.0 0 -8630108 true "" "ask turtle 4[plot (points / (num_strategies * ticks))]"
+"tit-for-tat" 1.0 0 -8053223 true "" "ask turtle 0[plot points]"
+"tit-for-2-tat" 1.0 0 -1184463 true "" "ask turtle 1[plot points]"
+"random-dude" 1.0 0 -13345367 true "" "ask turtle 2[plot points]"
+"its-something-guy" 1.0 0 -13840069 true "" "ask turtle 3[plot points]"
+"scumbag-steve" 1.0 0 -8630108 true "" "ask turtle 4[plot points]"
 "pen-5" 1.0 0 -7500403 true "" ""
 "pen-6" 1.0 0 -2674135 true "" ""
 
@@ -446,11 +209,11 @@ true
 false
 "" ""
 PENS
-"scumbag-stacy" 1.0 0 -8053223 true "" "ask turtle 5[plot (points / (num_strategies * ticks))]"
-"good-guy-greg" 1.0 0 -1184463 true "" "ask turtle 6[plot (points / (num_strategies * ticks))]"
-"neil-degrasse-tyson" 1.0 0 -13345367 true "" "ask turtle 7[plot (points / (num_strategies * ticks))]"
-"robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot (points / (num_strategies * ticks))]"
-"close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot (points / (num_strategies * ticks))]"
+"scumbag-stacy" 1.0 0 -8053223 true "" "ask turtle 5[plot points]"
+"good-guy-greg" 1.0 0 -1184463 true "" "ask turtle 6[plot points]"
+"neil-degrasse-tyson" 1.0 0 -13345367 true "" "ask turtle 7[plot points]"
+"robocop" 1.0 0 -13840069 true "" "ask turtle 8[plot points]"
+"close-enought-guy" 1.0 0 -8630108 true "" "ask turtle 9[plot points]"
 
 PLOT
 15
