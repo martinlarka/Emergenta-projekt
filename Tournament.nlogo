@@ -280,7 +280,10 @@ to-report median-guy [own_hist op_hist]
       ]
     ]
     if length opp-results != 0[
-      report round median opp-results - 1
+      if round median opp-results > 2[
+        report round median opp-results - 1
+      ]
+      report 1    
     ]
     report (random 9) + 1
   ]
