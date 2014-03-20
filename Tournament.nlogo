@@ -939,7 +939,7 @@ NetLogo 5.0.5
   <experiment name="experiment" repetitions="4" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <timeLimit steps="1500"/>
+    <timeLimit steps="1000"/>
     <metric>[points] of turtle 0</metric>
     <metric>[num_wins] of turtle 0</metric>
     <metric>[points] of turtle 1</metric>
