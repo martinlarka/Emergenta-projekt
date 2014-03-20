@@ -61,7 +61,7 @@ end
 
 to-report calc-move [strategy own_hist op_hist]
   if strategy = 0 [report tits-for-twat own_hist op_hist]
-  if strategy = 1 [report tits-for-twat2 own_hist op_hist]
+  if strategy = 1 [report static-bob]
   if strategy = 2 [report random-dude own_hist op_hist]
   if strategy = 3 [report its-something-guy own_hist op_hist]
   if strategy = 4 [report scumbag-steve own_hist op_hist]
@@ -132,24 +132,9 @@ to-report tits-for-twat [own_hist op_hist]
   
 end
 
-;; Tits for twat II!   (Håll hela första, sedan släppa två steg innan den andra släppte)
-to-report tits-for-twat2 [own_hist op_hist]
-  
-  ;; Kolla om listan är tom
-  ifelse length op_hist < 2[
-    report 10
-  ][
-    ;; Hämta resultatlista
-   let results result-list own_hist op_hist length own_hist
-    ;; Hämta motståndarens senaste drag
-   if first results != -1[
-      report first own_hist
-    ]
-    if first op_hist <= 2[
-      report 1
-    ]
-    report first op_hist - 1
-  ]
+;; Static-bob, kör 6 hela tiden
+to-report static-bob [own_hist op_hist]
+  report 6
 end
 
 ;; Random dude!    (rnd(1,10))
@@ -157,9 +142,9 @@ to-report random-dude [own_hist op_hist]
   report (random 9) + 1
 end
 
-;; It’s something guy   (1-1-1-...-1)
+;; It’s something guy   (4,4,4,4,4)
 to-report its-something-guy [own_hist op_hist]
-  report 1
+  report 4
 end
 
 ;; Scumbag Steve   (5-4-3-2-1-5-4-3-2-1...)
