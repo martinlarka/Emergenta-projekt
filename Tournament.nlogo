@@ -20,6 +20,7 @@ to go
     ]
   ]
   tick
+  if ticks = 1000 [stop]
 end
 
 to challenge [turtle_x turtle_y]
