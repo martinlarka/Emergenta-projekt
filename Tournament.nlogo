@@ -61,7 +61,7 @@ end
 
 to-report calc-move [strategy own_hist op_hist]
   if strategy = 0 [report tits-for-twat own_hist op_hist]
-  if strategy = 1 [report static-bob]
+  if strategy = 1 [report static-bob own_hist op_hist]
   if strategy = 2 [report random-dude own_hist op_hist]
   if strategy = 3 [report its-something-guy own_hist op_hist]
   if strategy = 4 [report scumbag-steve own_hist op_hist]
