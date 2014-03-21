@@ -20,9 +20,9 @@ Om de båda strategierna skulle ha släppt på nivå tio delas fem poäng ut til
 
 De strategier som tittar på motståndarens historik kan bara titta på de resultat där det antingen blivit lika eller där motståndaren vunnit. Detta görs genom funktionen result-list som tar in den egna historiken, motståndarens historik och en siffra som visar hur långt man vill kolla. Siffran som motsvarar hur långt man vill kolla är till för de strategier som bara tittar på den senaste matchen för att slippa gå igenom hela historiken.
 
-Result-list skapar två nya listor från listorna med historik, där längden bestäms av den siffra man skickade in. Funktionen går sedan igenom de nya resultatlistorna och jämför varje värdepar för sig. Värden läggs sedan till i en ny lista enligt nedan. Om den egna strategins valda värde är lägre än motståndarens betyder det att den egna strategin vann rundan, och 1 läggs till på motsvarande plats i en ny lista. Är värdena lika läggs 0 till på motsvarande plats. Hade den andra strategin ett lägre värde innebär det en förlust och att -1 läggs till i den nya listan. Ett exempel på hur detta fungerar visas i Tabell ??.
+Result-list skapar två nya listor från listorna med historik, där längden bestäms av den siffra man skickade in. Funktionen går sedan igenom de nya resultatlistorna och jämför varje värdepar för sig. Värden läggs sedan till i en ny lista enligt nedan. Om den egna strategins valda värde är lägre än motståndarens betyder det att den egna strategin vann rundan, och 1 läggs till på motsvarande plats i en ny lista. Är värdena lika läggs 0 till på motsvarande plats. Hade den andra strategin ett lägre värde innebär det en förlust och att -1 läggs till i den nya listan. Ett exempel på hur detta fungerar visas i Tabell \ref{table:result-list}.
 
-\begin{table}[h!]
+\begin{table}[htb]
 	\begin{center}
 		\begin{tabular}{| l | l | l | l |}
 			\hline
@@ -31,7 +31,8 @@ Result-list skapar två nya listor från listorna med historik, där längden be
 			Resultatlista & 1 & 0 & -1 \\ \hline
 		\end{tabular}
 	\end{center}
-	\caption{Bästa parameterkombination}
+	\caption{Exempel för result-list}
+	\label{table:result-list}
 \end{table}
 
 Strategierna som tittar på motståndarens historik använder sig sedan av denna resultatlista för att titta på vilka positioner det finns värden i motståndarens historiklista som det är tillåtet att titta på.
