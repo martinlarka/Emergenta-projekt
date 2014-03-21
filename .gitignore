@@ -1,2 +1,14 @@
 
 Tournament.nlogo
+
+*.aux
+
+*.log
+
+*.out
+
+rapport/mall.pdf
+
+*.gz
+
+*.toc
