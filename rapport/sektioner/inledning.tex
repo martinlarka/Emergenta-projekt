@@ -1,14 +1,12 @@
-\noindent
-Ett välkänt tv-program i Sverige, kallat “Paradise Hotel”, utser sin vinnare genom ett psykologiskt spel som spelas mellan två finaldeltagare som tilldelas varsin boll. Spelet består utav totalt 10 tidssteg, där spelarna kan välja att släppa eller att behålla bollen vid varje tidssteg. Varje tidssteg representeras av en prissumma, som ökar linjärt vid varje steg. Om båda deltagarna behåller bollen genom alla tidssteg delar de jämnt på det sista tidsstegets prissumma. Om en spelare väljer att släppa bollen på ett visst tidssteg erhåller denne hela prissumman för aktuellt tidssteg, medans motståndaren går lottlös. Med andra ord kan en spelare vinna hälften av pengarna genom att släppa bollen efter halva tiden eller genom att hålla i bollen spelet ut, men samtidigt riskera att bli blåst. \\
+Ett välkänt tv-program i Sverige, kallat “Paradise Hotel”, utser sin vinnare genom ett psykologiskt spel som spelas mellan två finaldeltagare som tilldelas varsin boll. Spelet består utav totalt 10 tidssteg, där spelarna kan välja att släppa eller att behålla bollen vid varje tidssteg. Varje tidssteg representeras av en prissumma, som ökar linjärt vid varje steg. Om båda deltagarna behåller bollen genom alla tidssteg delar de jämnt på det sista tidsstegets prissumma. Om en spelare väljer att släppa bollen på ett visst tidssteg erhåller denne hela prissumman för aktuellt tidssteg, medans motståndaren går lottlös. Med andra ord kan en spelare vinna hälften av pengarna genom att släppa bollen efter halva tiden eller genom att hålla i bollen spelet ut, men samtidigt riskera att bli blåst.
 
-\noindent
 Detta projekt avser att undersöka en iterativ variant av detta spel, där spelarna möter varandra många gånger och där prissumman ersätts utav poäng. Detta är intressant eftersom de spelare som väljer att vara godtrogna vid varje spel, är de spelare som troligtvis vinner minst antal gånger samtidigt som de kammar hem fler poäng per vinst. De spelare som släpper bollen vid första tidssteget vid varje spel kommer att vinna varje gång, men antalet poäng kommer att vara mindre. Målet är att hitta den strategi som presterar bäst över tid. 15 stycken strategier (spelare) har implementerats och tävlat mot varandra. Rapporten beskriver resultatet av följande frågor:
 
 \begin{itemize}
-\item Vilken strategi ger maximal utdelning om spelet körs x antal omgångar?
+\item \nohyphens{Vilken strategi ger maximal utdelning om spelet körs x antal omgångar?}\\*
 	\emph{Hypotes: Strategin “Tit-for-tat”, som släpper bollen ett tidssteg tidigare än motståndarens senaste “drag”.}
-\item Vilken strategi vinner flest omgångar?
+\item Vilken strategi vinner flest omgångar?\\*
 	\emph{Hypotes: Strategin som släpper vid tidssteg 1 vid varje spel.}
-\item Är det samma strategi som vinner flest omgångar som också får maximal utdelning i poäng?
+\item \nohyphens{Är det samma strategi som vinner flest omgångar som också får maximal utdelning i poäng?}\\*
 	\emph{Hypotes: Nej, spelaren som alltid släpper vid första tidssteget kommer att vinna flest gånger, men den vinner för lite poäng varje gång.}
 \end{itemize}
