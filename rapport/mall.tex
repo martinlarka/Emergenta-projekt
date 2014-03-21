@@ -13,7 +13,7 @@
 \documentclass[11pt, titlepage, oneside, a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[swedish]{babel}
 \usepackage{amssymb, graphicx, fancyhdr, amsmath}
 \usepackage{hyperref}
 \addtolength{\textheight}{20mm}
@@ -49,13 +49,18 @@
 \def\inst{Computing Science}
 \def\typeofdoc{Assignment report}
 \def\course{Emergent Systems VT-14,\\7,5 hp}
-\def\pretitle{Assignment 1}
-\def\title{Termites and terminators}
-\def\name{Emil Edskär and Martin Lärka}
+\def\pretitle{Projekt}
+\def\title{Ultimata strategin i Paradise Hotel-finalen}
+\def\name{Emil Edskär, Martin Lärka, Johan Holmgren och Peter Bjuhr}
+\def\footname{Edskär, Lärka, Holmgren och Bjuhr}
 \def\username{id10eer}
 \def\usernameB{id10mla}
+\def\usernameC{id10jhn}
+\def\usernameD{id10pbl}
 \def\email{\username{}@cs.umu.se}
 \def\emailB{\usernameB{}@cs.umu.se}
+\def\emailC{\usernameC{}@cs.umu.se}
+\def\emailD{\usernameD{}@cs.umu.se}
 \def\path{edu/KURS/labNR}
 \def\graders{Jonny Pettersson}
 
@@ -88,7 +93,7 @@
 			\begin{large}
 				\begin{tabular}{ll}
 					\textbf{Name} & \name \\
-					\textbf{Mail} & \texttt{\email} and \texttt{\emailB}\\
+					\textbf{Mail} & \texttt{\email} and \texttt{\emailB} and \texttt{\emailC} and \texttt{\emailD} \\
 				\end{tabular}
 			\end{large}
 			\vfill
@@ -99,7 +104,7 @@
 
 
 	% Fixar sidfot
-	\lfoot{\footnotesize{\name}}
+	\lfoot{\footnotesize{\footname}}
 	\rfoot{\footnotesize{\today}}
 	\lhead{\sc\footnotesize\title}
 	\rhead{\nouppercase{\sc\footnotesize\leftmark}}
@@ -122,39 +127,35 @@
 	% men däremot lite mellanrum
 	\setlength{\parskip}{10pt}
 
+	%\begin{abstract}
+	%Here goes the actual text of your abstract. 
+	%åÅäÄöÖ
+	%\end{abstract}
+
 	% Lägger in rubrik (finns \section, men då får man mycket spillutrymme)
-	\Section{Bakgrund}
-	I denna laboration undersöks emergenta egenskaper för ett system med termiter i en simulerad datorvärld. För att åstadkomma detta har programmet NetLogo använts. NetLogo är ett verktyg som är byggt för att simulera komplexa system som utvecklas med tiden.
 
-	Systemet som undersökts simulerar en värld delvis fylld av termiter och träbitar. Termiterna följer reglerna:
-		\begin{enumerate}
-			\item Vandrar slumpmässigt runt (utan att bära någon träbit).
-			\item Om träbit hittas, tar upp den.
-			\item Vandrar slumpmässigt runt (bär med en träbit).
-			\item Om träbit hittas, lägger ner träbiten som den redan bär på.
-			\item Börja om från steg 1.
-		\end{enumerate}
+	\section{Inledning}
+	\input{sektioner/inledning.tex}
 
-	Genom att varje termit i systemet följer dessa regler kommer systemet som helhet att nå den emergenta egenskapen, alla träbitar samlas i en och samma hög.
+	\newpage
 
-	I systemet finns även termiter som motverkar systemet. Alltså termiter som följer dessa regler:
-		\begin{enumerate}
-			\item Vandrar slumpmässigt runt (utan att bära någon träbit).
-			\item Om träbit hittas, tar upp den.
-			\item Springer iväg fyrtio steg i slumpmässigt riktning (bär med en träbit).
-			\item Vandra omkring och letar yta utan träbitar.
-			\item Om inga träbitar finns runtom den tomma ytan, lägg ner träbiten.
-			\item Vandra iväg tjugo steg i slumpmässig riktning.
-			\item Börja om från steg 1.
-		\end{enumerate}
+	\section{Bakgrund}
+	\input{sektioner/bakgrund.tex}
 
-	Frågan som tas upp i denna laboration är hur stor andel av de termiter som motverkar systemet som måste finnas i systemt för att den emergenta egenskapen, alla träbitar i samma hög, inte ska uppstå.
+	\newpage
 
-	Utöver detta undersöks även om det blir någon skillnad om en till sorts samlande termit introduseras i systemet. Denna termit samlar en annan sorts träbitar och försöker skapa en separat hög av dessa.
+	\section{Metod}
+	\input{sektioner/metod.tex}
 
-	\Section{Metoder} % Martin
-	
-	As evident from \autoref{fig1} $r$ is a very good approximation of tan within the interval $J_{4} = \left(-\frac{\pi}{32},\frac{\pi}{32}\right)$
+	\newpage
+
+	\section{Resultat}
+	\input{sektioner/resultat.tex}
+
+	\newpage
+
+	\section{Diskussion}
+	\input{sektioner/diskussion.tex}
 	
 	%\includegraphics[scale=0.5]{p2_01.png}\label{fig1}
 	
@@ -170,17 +171,6 @@
 %         \end{align*}
 % 
 %         $g(x)$ has no stationary points which means there can only exist one solution to the equation $g(x) = 0$ (according to Rolle's theorem).
-
-\Section{Resultat} % Emil
-	
-	
-
-\Section{Diskussion} % Båda
-
-
-\newpage
-\Section{Källkod}
-
 
 
 \end{document}
