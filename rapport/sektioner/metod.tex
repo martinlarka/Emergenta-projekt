@@ -40,15 +40,15 @@ Strategierna som tittar på motståndarens historik använder sig sedan av denna
 För att avgöra vilken strategi som är bäst är det alltså möjligt att titta både på vilken strategi som får mest poäng och vilken strategi som har vunnit flest matcher.
 
 \subsection{Strategier}
-En kort förklaring för varje strategi och dess beteende.
+En kort förklaring för varje strategi och dess beteende. De olika strategierna namngavs för att lättare kunna skilja dem åt. Namnen kommer från internetkaraktärer vars karaktär speglar beteendet hos strategierna.
 
 \subsubsection{Tit for tat}
 Denna strategi är en anpassad variant på tit for tat från Prisoner’s dilemma och fungerar på följande sätt. Första matchen väntar denna strategi till nivå tio. I efterföljande matcher spelar strategin samma som den förra omgången vid lika eller vinst. Förlorar strategin spelar den ett mindre än motståndarens förra val. Är motståndarens förra val mindre eller lika med två spelar strategin ett.
 
-\subsubsection{Static}
+\subsubsection{Static Bob}
 Denna strategi spelar alltid sex.
 
-\subsubsection{Random}
+\subsubsection{Random guy}
 När denna strategi anropas spelas ett slumpmässigt värde mellan ett och tio.
 
 \subsubsection{It’s something}
@@ -78,7 +78,7 @@ Slumpar fram ett jämnt tal varje omgång.
 \subsubsection{Mode}
 Denna strategi spelar ett slumpmässigt värde tills motståndaren har ett värde som den kan titta på. Sedan väljer den ett under motståndarens typvärde. Har motståndaren flera typvärden väljer strategin det minsta och spelar ett under det.
 
-\subsubsection{Median}
+\subsubsection{Median guy}
 Spelar ett slumpmässigt värde tills motståndaren har ett värde som den kan titta på. När detta hänt spelar denna strategi ett under motståndarens medianvärde (som avrundas ifall ett jämnt antal matcher spelas och medianvärdet blir ett medelvärde av två värden).
 
 \subsubsection{Grudger}
