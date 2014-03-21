@@ -1,0 +1,87 @@
+\subsection{Inledande analys}
+För att genomföra denna undersökning och jämföra olika strategier mot varandra, inleddes implementationsdelen med en analys av spelet för att vara säker på att alla regler efterföljdes. Detta skedde genom att studera en video från en final, då ingen textdokumentation gick att återfinna.
+
+Efter att ha klartgjort alla regler för gruppmedlemmarna bestod nästa del av en gemensam gruppdiskussion för att bestämma hur testet skulle utformas. Då tidigare laborationer utförts i NetLogo, låg detta program nära i tankarna för implementationen av detta test. Fördelarna med kraftfulla funktioner, en bra testmiljö och den enkla visualisationen av resultat gjorde att valet blev relativt enkelt. Parallellt med detta utformades de strategier som skulle testas mot varandra. 
+
+Då programmet att utföra testet i var bestämt, påbörjades själva arbetet. Gruppen delades upp i undergrupper med två medlemmar vardera. En grupp fokuserade på att skapa miljön där strategierna ställs mot varandra, samt att ta fram och visualisera resultat. Den andra sattes på att implementera strategier. De båda grupperna samarbetade dock genom diskussioner under arbetets gång för att försöka skapa miljön och implementera strategierna på bästa sätt.
+
+Testet består av 15 st strategier. Dessa strategier spelar mot alla andra strategier (inklusive sin egen). När de spelar sparar agenterna sin egen historik mot de andra strategierna, de andra strategiernas historik mot den egna strategin, hur många poäng strategin har samt hur många matcher den har vunnit. Strategier som tar hjälp av motståndarens historik kan dock bara titta på dessa resultat ifall motståndaren vann eller matchen slutade lika.
+
+En match går till genom att två strategier möter varandra. De båda meddelar vilken nivå de har tänkt släppa glaskulan på, där en nivå i detta fall motsvaras av en siffra mellan ett och tio. Släpper båda på nivån tio ges båda fem poäng och matchen räknas som vunnen. Andra likaresultat räknas som lika men ger inga poäng. I annat fall vinner den strategi som valde att släppa tidigare än den andra, och motsvarande antal poäng utdelas till den vinnande strategin. Den vinnande strategin registrerar då också en vinst.
+
+\subsection{Implementation}
+För att uppnå detta skapas i detta fall 15 st agenter i NetLogo som var och en motsvarar en strategi. Strategierna är dock implementerade utanför agenterna vilket gör att agenterna inte möter varandra. Istället har varje agent en separat uppsättning matcher och resultat vilka inte är kopplade till de andra agenterna. Agenterna innehåller alla en lista med sina egna tidigare val, en lista med motståndarens tidigare val, en poängräknare och en räknare som håller koll på antalet vunna matcher. Både listan med egna val och listan med motståndarens val innehåller i sin tur en lista för varje strategi som agenten ska möta.
+
+Då agenterna har skapats sätter själva testet igång, då alla agenter gås igenom i en slumpmässig ordning och spelar i turordning en match mot alla strategier. Ett tidssteg motsvarar alltså en match för alla strategier mot alla strategier (inklusive sig själva). 
+
+Agenternas identifikation (“who”) står för vilken strategi de motsvarar. Matcherna spelas genom funktionen challenge som tar in två ID:n. Det första motsvarar den agent vars strategi nu spelar mot alla strategier och det andra vilken strategi som agentens strategi möter för tillfället. Utifrån dessa beräknas de båda strategiernas drag genom funktionen calc-move. Denna funktion anropar i sin tur de aktuella strategierna tillsammans med de båda strategiernas historik för den aktuella agenten, för att avgöra på vilken nivå som strategierna skulle ha släppt. De båda strategiernas drag jämförs sedan.
+
+Om de båda strategierna skulle ha släppt på nivå tio delas fem poäng ut till den aktuella agenten och matchen räknas som vunnen vilket gör att ett adderas till räknaren för vunna matcher. Släpper de båda strategierna på samma nivå, som inte är den sista, räknas matchen som lika. Vinner agenten läggs den nivå agentens strategi skulle ha släppt på till i poängräknaren och ett adderas till vinsträknaren. Vinner motståndaren händer ingenting. Oavsett resultat läggs den nivå som strategierna valt till i historiken.
+
+De strategier som tittar på motståndarens historik kan bara titta på de resultat där det antingen blivit lika eller där motståndaren vunnit. Detta görs genom funktionen result-list som tar in den egna historiken, motståndarens historik och en siffra som visar hur långt man vill kolla. Siffran som motsvarar hur långt man vill kolla är till för de strategier som bara tittar på den senaste matchen för att slippa gå igenom hela historiken.
+
+Result-list skapar två nya listor från listorna med historik, där längden bestäms av den siffra man skickade in. Funktionen går sedan igenom de nya resultatlistorna och jämför varje värdepar för sig. Värden läggs sedan till i en ny lista enligt nedan. Om den egna strategins valda värde är lägre än motståndarens betyder det att den egna strategin vann rundan, och 1 läggs till på motsvarande plats i en ny lista. Är värdena lika läggs 0 till på motsvarande plats. Hade den andra strategin ett lägre värde innebär det en förlust och att -1 läggs till i den nya listan. Ett exempel på hur detta fungerar visas i Tabell ??.
+
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabular}{| l | l | l | l |}
+			\hline
+			Mitt val & 6 & 4 & 8 \\ \hline
+			Motståndarens val & 7 & 4 & 2 \\ \hline
+			Resultatlista & 1 & 0 & -1 \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Bästa parameterkombination}
+\end{table}
+
+Strategierna som tittar på motståndarens historik använder sig sedan av denna resultatlista för att titta på vilka positioner det finns värden i motståndarens historiklista som det är tillåtet att titta på.
+
+För att avgöra vilken strategi som är bäst är det alltså möjligt att titta både på vilken strategi som får mest poäng och vilken strategi som har vunnit flest matcher.
+
+\subsection{Strategier}
+En kort förklaring för varje strategi och dess beteende.
+
+\subsubsection{Tit for tat}
+Denna strategi är en anpassad variant på tit for tat från Prisoner’s dilemma och fungerar på följande sätt. Första matchen väntar denna strategi till nivå tio. I efterföljande matcher spelar strategin samma som den förra omgången vid lika eller vinst. Förlorar strategin spelar den ett mindre än motståndarens förra val. Är motståndarens förra val mindre eller lika med två spelar strategin ett.
+
+\subsubsection{Static}
+Denna strategi spelar alltid sex.
+
+\subsubsection{Random}
+När denna strategi anropas spelas ett slumpmässigt värde mellan ett och tio.
+
+\subsubsection{It’s something}
+Spelar alltid fyra.
+
+\subsubsection{Scumbag Steve}
+Strategin spelar den återkommande sekvensen 5-4-3-2-1-5-4...
+
+\subsubsection{Scumbag Stacy}
+Är en variant på Scumbag Steve men spelar istället sekvensen 5-3-1-5-3...
+
+\subsubsection{Good Guy Greg}
+Spelar alltid tio.
+
+\subsubsection{Neil deGrasse Tyson}
+Spelar fem så länge strategin vinner eller spelar lika. Direkt motståndaren har historik som strategin får titta på, spelar denna strategi ett avrundat medelvärde av motståndarens val.
+
+\subsubsection{Robocop}
+Spelar alltid fem.
+
+\subsubsection{Close enough}
+Spelar fem så länge motståndaren inte har tre resultat som den kan titta på, spelar sedan ett avrundat medelvärde av de tre senaste valen som motståndaren gjort.
+
+\subsubsection{Even numbers}
+Slumpar fram ett jämnt tal varje omgång.
+
+\subsubsection{Mode}
+Denna strategi spelar ett slumpmässigt värde tills motståndaren har ett värde som den kan titta på. Sedan väljer den ett under motståndarens typvärde. Har motståndaren flera typvärden väljer strategin det minsta och spelar ett under det.
+
+\subsubsection{Median}
+Spelar ett slumpmässigt värde tills motståndaren har ett värde som den kan titta på. När detta hänt spelar denna strategi ett under motståndarens medianvärde (som avrundas ifall ett jämnt antal matcher spelas och medianvärdet blir ett medelvärde av två värden).
+
+\subsubsection{Grudger}
+Spelar tio så länge motståndaren också spelar tio, från och med att motståndaren spelar något annat spelar denna strategi ett.
+
+\subsubsection{Adjust}
+Denna strategi spelar fem första omgången. Sedan ökar den ett vid vinst, spelar samma vid lika och minskar ett vid förlust.
