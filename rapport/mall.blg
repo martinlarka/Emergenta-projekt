@@ -1,6 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: mall.aux
+<<<<<<< HEAD
 I found no \citation commands---while reading file mall.aux
 I found no \bibdata command---while reading file mall.aux
 I found no \bibstyle command---while reading file mall.aux
@@ -46,3 +47,51 @@ while$ -- 0
 width$ -- 0
 write$ -- 0
 (There were 3 error messages)
+=======
+The style file: plain-annote.bst
+Database file #1: mall.bib
+Warning--I didn't find a database entry for "dictatorGame"
+Warning--to sort, need author or key in UltimatumGame
+You've used 5 entries,
+            2174 wiz_defined-function locations,
+            541 strings with 4804 characters,
+and the built_in function-call counts, 1411 in all, are:
+= -- 135
+> -- 51
+< -- 1
++ -- 21
+- -- 16
+* -- 103
+:= -- 236
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 23
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 49
+empty$ -- 125
+format.name$ -- 16
+if$ -- 295
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 3
+newline$ -- 33
+num.names$ -- 8
+pop$ -- 23
+preamble$ -- 1
+purify$ -- 18
+quote$ -- 0
+skip$ -- 31
+stack$ -- 0
+substring$ -- 88
+swap$ -- 5
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 20
+warning$ -- 1
+while$ -- 11
+width$ -- 6
+write$ -- 60
+(There were 2 warnings)
+>>>>>>> FETCH_HEAD
