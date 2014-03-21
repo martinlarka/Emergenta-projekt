@@ -12,3 +12,11 @@ rapport/mall.pdf
 *.gz
 
 *.toc
+
+*.aux
+
+*.aux
+
+*.log
+
+rapport/mall.aux
