@@ -104,6 +104,14 @@
 		\end{center}
 	\end{titlepage}
 
+	\addto\captionsswedish{%
+		\renewcommand{\abstractname}%
+			{Abstract}%
+	}
+
+	\begin{abstract}
+	Using game theory, this experiment aims to find an optimal strategy in a unique game that has similarities with the ultimatum game. The game studied is the final game in the swedish version of Paradise Hotel. In which, two finalists are given a glass ball each. The game is played by letting the finalists hold the balls and gradually raising the money in a prize until a final level is reached. If both contestants hold the ball to the final level, they share the prize money. If, however, one contestant drops their ball they alone win the prize at the current level and the opponent is left with nothing. To simulate this game played with different strategies, the study was performed in NetLogo. After creating strategies, the program simulates 15 agents who each represent a strategy. The game is modified to an iterative version and every strategy plays all strategies, including itself, in 1 000 games. During the games the program saves the number of games won and points representing money won. The three top strategies in both games won and points gathered all adjust to the opponents previous choices in some capacity. The winning strategy is a modified version of Tit for tat. Since this strategy is the best in some versions of the Prisoner's dilemma, this study is an affirmation of the strategy's superiority in similar games.
+	\end{abstract}
 
 	% Fixar sidfot
 	\lfoot{\footnotesize{\footname}}
@@ -129,11 +137,6 @@
 	\setlength{\parindent}{0pt}
 	% men däremot lite mellanrum
 	\setlength{\parskip}{10pt}
-
-	%\begin{abstract}
-	%Here goes the actual text of your abstract. 
-	%åÅäÄöÖ
-	%\end{abstract}
 
 	% Lägger in rubrik (finns \section, men då får man mycket spillutrymme)
 
