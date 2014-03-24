@@ -11,18 +11,18 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Tit for tat}{7}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Static Bob}{7}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Random guy}{7}{subsubsection.3.3.3}
-\contentsline {subsubsection}{\numberline {3.3.4}It\IeC {\textquoteright }s something}{7}{subsubsection.3.3.4}
+\contentsline {subsubsection}{\numberline {3.3.4}It\IeC {\textquoteright }s Something Guy}{7}{subsubsection.3.3.4}
 \contentsline {subsubsection}{\numberline {3.3.5}Scumbag Steve}{7}{subsubsection.3.3.5}
 \contentsline {subsubsection}{\numberline {3.3.6}Scumbag Stacy}{8}{subsubsection.3.3.6}
 \contentsline {subsubsection}{\numberline {3.3.7}Good Guy Greg}{8}{subsubsection.3.3.7}
 \contentsline {subsubsection}{\numberline {3.3.8}Neil deGrasse Tyson}{8}{subsubsection.3.3.8}
 \contentsline {subsubsection}{\numberline {3.3.9}Robocop}{8}{subsubsection.3.3.9}
-\contentsline {subsubsection}{\numberline {3.3.10}Close enough}{8}{subsubsection.3.3.10}
-\contentsline {subsubsection}{\numberline {3.3.11}Even numbers}{8}{subsubsection.3.3.11}
-\contentsline {subsubsection}{\numberline {3.3.12}Loler}{8}{subsubsection.3.3.12}
+\contentsline {subsubsection}{\numberline {3.3.10}Close Enough Guy}{8}{subsubsection.3.3.10}
+\contentsline {subsubsection}{\numberline {3.3.11}Even Numbers Guy}{8}{subsubsection.3.3.11}
+\contentsline {subsubsection}{\numberline {3.3.12}Loler Guy}{8}{subsubsection.3.3.12}
 \contentsline {subsubsection}{\numberline {3.3.13}Median guy}{8}{subsubsection.3.3.13}
 \contentsline {subsubsection}{\numberline {3.3.14}Grudger}{9}{subsubsection.3.3.14}
-\contentsline {subsubsection}{\numberline {3.3.15}Adjust}{9}{subsubsection.3.3.15}
+\contentsline {subsubsection}{\numberline {3.3.15}Adjust Guy}{9}{subsubsection.3.3.15}
 \contentsline {section}{\numberline {4}Resultat}{10}{section.4}
 \contentsline {section}{\numberline {5}Diskussion}{12}{section.5}
 \contentsline {subsection}{\numberline {5.1}Resultat}{12}{subsection.5.1}
