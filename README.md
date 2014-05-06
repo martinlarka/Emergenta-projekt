@@ -1,3 +1,3 @@
-Emergenta-projekt
+Emergenta-project
 =================
-Projekt i Emergenta system
+School project in Emergent property systems
